@@ -1,7 +1,9 @@
 package dao;
 
-import livro.LivroDAO;
-import livro.LivroDAOlist;
+import dao.livro.LivroDAO;
+import dao.livro.LivroDAOlist;
+import dao.usuario.UsuarioDAO;
+import dao.usuario.UsuarioDAOlist;
 
 public class DAO {
     private static LivroDAO livroDAO;
@@ -10,6 +12,14 @@ public class DAO {
             livroDAO = new LivroDAOlist();
         }
         return livroDAO;
+    }
+
+    private static UsuarioDAO usuarioDAO;
+    public static UsuarioDAO getUsuarioDAO(){
+        if (usuarioDAO == null){
+            usuarioDAO = new UsuarioDAOlist();
+        }
+        return usuarioDAO;
     }
 
 }
