@@ -1,8 +1,13 @@
 package model;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private Integer numIdentificacao;
+
+    public Pessoa(String nome, Integer numIdentificacao) {
+        this.nome = nome;
+        this.numIdentificacao = numIdentificacao;
+    }
 
     public String getNome() {
         return nome;

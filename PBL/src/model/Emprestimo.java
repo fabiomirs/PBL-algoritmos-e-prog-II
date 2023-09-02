@@ -37,6 +37,9 @@ public class Emprestimo {
     public void getlivrosAtrasados(){
 
     }
+    public double calcularMulta(){
+        return 0.0;
+    }
 }
 
 

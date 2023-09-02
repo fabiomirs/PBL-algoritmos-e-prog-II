@@ -1,10 +1,18 @@
 package model;
 
-public class Usuario {
+public class Usuario extends Pessoa {
     private String endereco;
     private Integer telefone;
     private String statusConta;
     private Integer limReservas;
+
+    public Usuario(String nome, Integer numIdentificacao ,String endereco, Integer telefone, String statusConta, Integer limReservas) {
+        super(nome, numIdentificacao);
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.statusConta = statusConta;
+        this.limReservas = limReservas;
+    }
 
     public String getEndereco() {
         return endereco;
@@ -37,10 +45,14 @@ public class Usuario {
     public void setLimReservas(Integer limReservas) {
         this.limReservas = limReservas;
     }
-    public void realizarReserva(){
 
-    }
-    public void renovarEmprestimo(){
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "endereco='" + endereco + '\'' +
+                ", telefone=" + telefone +
+                ", statusConta='" + statusConta + '\'' +
+                ", limReservas=" + limReservas +
+                '}';
     }
 }

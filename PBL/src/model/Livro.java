@@ -9,6 +9,19 @@ public class Livro {
     private String autor;
     private String anoPublicacao;
     private Integer id;
+    private static int proximoId = 1;
+
+    public Livro(String titulo, String editora, Integer codigoIsbn, String localizacao,
+                 String statusLivro, String autor, String anoPublicacao) {
+        this.titulo = titulo;
+        this.editora = editora;
+        this.codigoIsbn = codigoIsbn;
+        this.localizacao = localizacao;
+        this.statusLivro = statusLivro;
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.id = proximoId++;
+    }
 
     public Integer getId() {
         return id;
@@ -73,55 +86,18 @@ public class Livro {
     public void setAnoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
-    public void infoLivro(){
-        System.out.println("Informações sobre o livro:");
-        System.out.println("ID: " + id);
-        System.out.println("Título: " + titulo);
-        System.out.println("Editora: " + editora);
-        System.out.println("Código ISBN: " + codigoIsbn);
-        System.out.println("Localização: " + localizacao);
-        System.out.println("Status do Livro: " + statusLivro);
-        System.out.println("Autor: " + autor);
-        System.out.println("Ano de Publicação: " + anoPublicacao);
+
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "titulo='" + titulo + '\'' +
+                ", editora='" + editora + '\'' +
+                ", codigoIsbn=" + codigoIsbn +
+                ", localizacao='" + localizacao + '\'' +
+                ", statusLivro='" + statusLivro + '\'' +
+                ", autor='" + autor + '\'' +
+                ", anoPublicacao='" + anoPublicacao + '\'' +
+                ", id=" + id +
+                '}';
     }
-    public void attInfoLivro(String novoTitulo, String novaEditora, Integer novoCodigoIsbn, String novaLocalizacao,
-                             String novoStatusLivro, String novoAutor, String novoAnoPublicacao) {
-        System.out.println("Atualizando informações do livro (ID: " + id + "):");
-
-        if (novoTitulo != null) {
-            titulo = novoTitulo;
-            System.out.println("Novo Título: " + novoTitulo);
-        }
-
-        if (novaEditora != null) {
-            editora = novaEditora;
-            System.out.println("Nova Editora: " + novaEditora);
-        }
-
-        if (novoCodigoIsbn != null) {
-            codigoIsbn = novoCodigoIsbn;
-            System.out.println("Novo Código ISBN: " + novoCodigoIsbn);
-        }
-
-        if (novaLocalizacao != null) {
-            localizacao = novaLocalizacao;
-            System.out.println("Nova Localização: " + novaLocalizacao);
-        }
-
-        if (novoStatusLivro != null) {
-            statusLivro = novoStatusLivro;
-            System.out.println("Novo Status do Livro: " + novoStatusLivro);
-        }
-
-        if (novoAutor != null) {
-            autor = novoAutor;
-            System.out.println("Novo Autor: " + novoAutor);
-        }
-
-        if (novoAnoPublicacao != null) {
-            anoPublicacao = novoAnoPublicacao;
-            System.out.println("Novo Ano de Publicação: " + novoAnoPublicacao);
-        }
-    }
-
 }
