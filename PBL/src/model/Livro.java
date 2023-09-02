@@ -9,7 +9,7 @@ public class Livro {
     private String autor;
     private String anoPublicacao;
     private Integer id;
-    private static int proximoId = 1;
+    private int proximoId;
 
     public Livro(String titulo, String editora, Integer codigoIsbn, String localizacao,
                  String statusLivro, String autor, String anoPublicacao) {
@@ -20,7 +20,7 @@ public class Livro {
         this.statusLivro = statusLivro;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
-        this.id = proximoId++;
+        this.id = proximoId;
     }
 
     public Integer getId() {
@@ -87,7 +87,6 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    @Override
     public String toString() {
         return "Livro{" +
                 "titulo='" + titulo + '\'' +

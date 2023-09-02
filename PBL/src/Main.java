@@ -1,23 +1,16 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 
+import dao.DAO;
 import model.Livro;
 
 public class Main {
     public static void main(String[] args) {
-        Livro livro1 = new Livro("Título 1", "Editora 1", 1234567890, "Localização A",
-                "Disponível", "Autor 1", "2023");
-        livro1.toString();
-        System.out.println("ID do livro 1: " + livro1.getId());
-
-        Livro livro2 = new Livro("Título 2", "Editora 2", 987654321, "Localização B",
-                "Emprestado", "Autor 2", "2020");
-        livro2.toString();
-        System.out.println("ID do livro 2: " + livro2.getId());
-        Livro livro3 = new Livro("Tíggtulo 2", "Editfgfgora 2", 987654321, "Locagglização B",
-                "Emprggestado", "Autoggr 2", "20gg20");
-        livro2.toString();
-        System.out.println("ID do livro 2: " + livro3.getId());
-
+        DAO.getLivroDAO().create(new Livro("teste","valoriza",456879,"zona norte","ocupado","fabio","00/00/2023"));
+        DAO.getLivroDAO().create(new Livro("teste","valggoriza",456879,"zonagg norte","ocupado","fabio","00/00/2023"));
+        DAO.getLivroDAO().create(new Livro("teggste","valoriza",456879,"zona norte","ocupado","fabio","00/00/2023"));
+        DAO.getLivroDAO().create(new Livro("teste","valoriza",456879,"zona norte","ocupado","fabggio","00/00/2023"));
+        //System.out.println(DAO.getLivroDAO().read());
+        System.out.println(DAO.getLivroDAO().buscarporId(0));
     }
 }
