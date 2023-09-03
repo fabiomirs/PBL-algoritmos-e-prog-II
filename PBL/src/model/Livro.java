@@ -10,9 +10,10 @@ public class Livro {
     private String anoPublicacao;
     private Integer id;
     private int proximoId;
+    private String categoria;
 
     public Livro(String titulo, String editora, Integer codigoIsbn, String localizacao,
-                 String statusLivro, String autor, String anoPublicacao) {
+                 String statusLivro, String autor, String anoPublicacao, String categoria) {
         this.titulo = titulo;
         this.editora = editora;
         this.codigoIsbn = codigoIsbn;
@@ -21,6 +22,23 @@ public class Livro {
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
         this.id = proximoId;
+        this.categoria = categoria;
+    }
+
+    public int getProximoId() {
+        return proximoId;
+    }
+
+    public void setProximoId(int proximoId) {
+        this.proximoId = proximoId;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public Integer getId() {

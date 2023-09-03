@@ -1,5 +1,10 @@
 package model;
 
+import dao.DAO;
+import dao.livro.LivroDAO;
+
+import java.util.List;
+
 public abstract class Pessoa {
     private String nome;
     private Integer numIdentificacao;
@@ -24,7 +29,5 @@ public abstract class Pessoa {
     public void setNumIdentificacao(Integer numIdentificacao) {
         this.numIdentificacao = numIdentificacao;
     }
-    public void pesquisarLivro(){
 
-    }
 }

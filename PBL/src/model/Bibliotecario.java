@@ -25,8 +25,4 @@ public class Bibliotecario extends Pessoa {
     public void setSenhaAcesso(Integer senhaAcesso) {
         this.senhaAcesso = senhaAcesso;
     }
-    public Livro registrarLivro(){
-
-        return null;
-    }
 }

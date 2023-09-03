@@ -19,27 +19,6 @@ public class Emprestimo {
     public void setDataDevolucao(String dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
-    public void realizarEmprestimo(){
-
-    }
-    public void registrarDevolucao(){
-
-    }
-    public void getHistoricousuario(){
-
-    }
-    public void getlivrosEmprestados(){
-
-    }
-    public void getlivrosReservados(){
-
-    }
-    public void getlivrosAtrasados(){
-
-    }
-    public double calcularMulta(){
-        return 0.0;
-    }
 }
 
 
