@@ -45,5 +45,34 @@ public class LivroDAOlist implements LivroDAO {
         return null;
     }
 
+    public List<Livro> buscarporTitulo(String titulo){
+        List<Livro> listLivro = new ArrayList<Livro>();
+        for (Livro livro: this.Livros) {
+            if (livro.getTitulo() == titulo) {
+                listLivro.add(livro);
+            }
+        }
+        return listLivro;
+    }
+    public List<Livro> buscarporAutor(String autor){
+        List<Livro> listLivro = new ArrayList<Livro>();
+        for (Livro livro: this.Livros) {
+            if (livro.getAutor() == autor) {
+                listLivro.add(livro);
+            }
+        }
+        return listLivro;
+    }
+
+    public List<Livro> buscarporIsbn(Integer Isbn){// TA ERRADO AQUI
+        List<Livro> listLivro = new ArrayList<Livro>();
+        for (Livro livro: this.Livros) {
+            if (livro.getCodigoIsbn() == Isbn) {
+                listLivro.add(livro);
+            }
+        }
+        return listLivro;
+    }
+
 }
 
