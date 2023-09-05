@@ -6,12 +6,12 @@ public class Usuario extends Pessoa {
     private String statusConta;
     private Integer limReservas;
 
-    public Usuario(String nome, Integer numIdentificacao ,String endereco, Integer telefone, String statusConta, Integer limReservas) {
-        super(nome, numIdentificacao);
+    public Usuario(String nome ,String endereco, Integer telefone) {
+        super(nome);
         this.endereco = endereco;
         this.telefone = telefone;
-        this.statusConta = statusConta;
-        this.limReservas = limReservas;
+        this.statusConta = "Liberado";
+        this.limReservas = 2;
     }
 
     public String getEndereco() {
@@ -54,5 +54,14 @@ public class Usuario extends Pessoa {
                 ", statusConta='" + statusConta + '\'' +
                 ", limReservas=" + limReservas +
                 '}';
+    }
+    public void realizarReserva(){
+
+    }
+    public void renovarEmprestimo(Livro livro){
+        if (livro.getStatusLivro()=="Disponivel" && getLimReservas()>0){
+            System.out.println("não é possivel realizar a reserva...");
+
+        }
     }
 }

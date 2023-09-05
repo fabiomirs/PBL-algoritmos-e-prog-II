@@ -8,10 +8,11 @@ import java.util.List;
 public abstract class Pessoa {
     private String nome;
     private Integer numIdentificacao;
+    private Integer proximoId;
 
-    public Pessoa(String nome, Integer numIdentificacao) {
+    public Pessoa(String nome) {
         this.nome = nome;
-        this.numIdentificacao = numIdentificacao;
+        this.numIdentificacao = proximoId;
     }
 
     public String getNome() {

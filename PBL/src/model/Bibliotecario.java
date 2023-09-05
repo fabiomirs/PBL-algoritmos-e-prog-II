@@ -4,8 +4,8 @@ public class Bibliotecario extends Pessoa {
     private String cargo;
     private Integer senhaAcesso;
 
-    public Bibliotecario(String nome, Integer numIdentificacao, String cargo, Integer senhaAcesso) {
-        super(nome, numIdentificacao);
+    public Bibliotecario(String nome, String cargo, Integer senhaAcesso) {
+        super(nome);
         this.cargo = cargo;
         this.senhaAcesso = senhaAcesso;
     }
