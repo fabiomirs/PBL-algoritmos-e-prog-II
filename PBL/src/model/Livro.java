@@ -127,9 +127,4 @@ public class Livro {
         Livro livro = (Livro) o;
         return proximoId == livro.proximoId && Objects.equals(titulo, livro.titulo) && Objects.equals(editora, livro.editora) && Objects.equals(codigoIsbn, livro.codigoIsbn) && Objects.equals(localizacao, livro.localizacao) && Objects.equals(statusLivro, livro.statusLivro) && Objects.equals(autor, livro.autor) && Objects.equals(anoPublicacao, livro.anoPublicacao) && Objects.equals(id, livro.id) && Objects.equals(categoria, livro.categoria);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(titulo, editora, codigoIsbn, localizacao, statusLivro, autor, anoPublicacao, id, proximoId, categoria);
-    }
 }

@@ -55,13 +55,4 @@ public class Usuario extends Pessoa {
                 ", limReservas=" + limReservas +
                 '}';
     }
-    public void realizarReserva(){
-
-    }
-    public void renovarEmprestimo(Livro livro){
-        if (livro.getStatusLivro()=="Disponivel" && getLimReservas()>0){
-            System.out.println("não é possivel realizar a reserva...");
-
-        }
-    }
 }
