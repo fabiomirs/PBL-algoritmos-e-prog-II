@@ -28,10 +28,12 @@ public class AdmDAOlist implements AdmDAO {
 
     public Administrador update(Administrador objeto) {
         int index = this.adms.indexOf(objeto);
-        this.adms.set(index, objeto);
-        return objeto;
+        if (index != -1){
+            this.adms.set(index, objeto);
+            return objeto;
+        }
+        return null;
     }
-
     public void delete(Administrador objeto) {
         this.adms.remove(objeto);
     }

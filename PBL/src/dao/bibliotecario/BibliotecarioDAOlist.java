@@ -28,8 +28,11 @@ public class BibliotecarioDAOlist implements BibliotecarioDAO{
 
     public Bibliotecario update(Bibliotecario objeto) {
         int index = this.bibliotecarios.indexOf(objeto);
-        this.bibliotecarios.set(index, objeto);
-        return objeto;
+        if (index != -1){
+            this.bibliotecarios.set(index, objeto);
+            return objeto;
+        }
+        return null;
     }
 
     public void delete(Bibliotecario objeto) {
