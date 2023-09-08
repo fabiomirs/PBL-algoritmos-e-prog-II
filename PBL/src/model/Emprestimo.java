@@ -1,23 +1,49 @@
 package model;
 
-public class Emprestimo {
-    private String dataEmprestimo;
-    private String dataDevolucao;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public String getDataEmprestimo() {
+public class Emprestimo {
+    private Livro livro;
+    private Usuario usuario;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucao;
+    private Integer id;
+    public Emprestimo(Livro livro,Usuario usuario){
+        this.livro = livro;
+        this.usuario = usuario;
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucao = this.dataEmprestimo.plusDays(7);
+        this.id = usuario.getNumIdentificacao();
+    }
+
+    public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(String dataEmprestimo) {
-        this.dataEmprestimo = dataEmprestimo;
-    }
-
-    public String getDataDevolucao() {
+    public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(String dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public Integer getId() {
+        return id;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Emprestimo{" +
+                "dataEmprestimo=" + dataEmprestimo.format(formatar) +
+                ", dataDevolucao=" + dataDevolucao.format(formatar) +
+                '}';
     }
 }
 
