@@ -28,8 +28,11 @@ public class LivroDAOlist implements LivroDAO {
 
     public Livro update(Livro objeto) {
         int index = this.Livros.indexOf(objeto);
-        this.Livros.set(index, objeto);
-        return objeto;
+        if (index != -1){
+            this.Livros.set(index, objeto);
+            return objeto;
+        }
+        return null;
     }
 
     public void delete(Livro objeto) {
@@ -64,15 +67,26 @@ public class LivroDAOlist implements LivroDAO {
         return listLivro;
     }
 
-    public List<Livro> buscarporIsbn(Integer Isbn){// TA ERRADO AQUI
-        List<Livro> listLivro = new ArrayList<Livro>();
-        for (Livro livro: this.Livros) {
-            if (livro.getCodigoIsbn() == Isbn) {
+    public List<Livro> buscarPorIsbn(Integer isbn) {
+        List<Livro> listLivro = new ArrayList<>();
+        for (Livro livro : this.Livros) {
+            if (livro.getCodigoIsbn().equals(isbn)) {
                 listLivro.add(livro);
             }
         }
         return listLivro;
     }
+
+    public List<Livro> buscarPorCategoria(String categoria){
+       List<Livro> listLivro = new ArrayList<>();
+       for (Livro livro : this.Livros) {
+           if (livro.getCategoria() == categoria){
+               listLivro.add(livro);
+           }
+       }
+       return listLivro;
+    }
+
 
 }
 
