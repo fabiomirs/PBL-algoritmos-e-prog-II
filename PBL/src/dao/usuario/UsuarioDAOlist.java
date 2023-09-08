@@ -30,8 +30,11 @@ public class UsuarioDAOlist implements UsuarioDAO {
 
     public Usuario update(Usuario objeto) {
         int index = this.usuarios.indexOf(objeto);
-        this.usuarios.set(index, objeto);
-        return objeto;
+        if (index != -1){
+            this.usuarios.set(index, objeto);
+            return objeto;
+        }
+        return null;
     }
 
     public void delete(Usuario objeto) {
