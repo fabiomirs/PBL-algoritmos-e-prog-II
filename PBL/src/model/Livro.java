@@ -1,6 +1,8 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 
 public class Livro {
     private String titulo;
@@ -13,6 +15,22 @@ public class Livro {
     private Integer id;
     private int proximoId;
     private String categoria;
+    private Queue<Emprestimo> reservas = new LinkedList<>();
+
+    public void addReserva(Emprestimo objeto){
+        reservas.offer(objeto);
+    }
+    public Emprestimo proxReserva(){
+        return reservas.peek();
+    }
+
+    public void tiraFilareserva(){
+        reservas.poll();
+    }
+
+    public Queue<Emprestimo> getReservas() {
+        return reservas;
+    }
 
     public Livro(String titulo, String editora, Integer codigoIsbn, String localizacao,
                  String autor, String anoPublicacao, String categoria) {
