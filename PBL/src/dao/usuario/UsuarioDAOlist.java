@@ -2,6 +2,7 @@ package dao.usuario;
 
 
 
+import exceptions.UsuarioException;
 import model.Usuario;
 
 import java.util.ArrayList;
@@ -28,26 +29,31 @@ public class UsuarioDAOlist implements UsuarioDAO {
         return usuarios;
     }
 
-    public Usuario update(Usuario objeto) {
+    public Usuario update(Usuario objeto) throws UsuarioException{
         int index = this.usuarios.indexOf(objeto);
         if (index != -1){
             this.usuarios.set(index, objeto);
             return objeto;
         }
-        return null;
+        else {
+            throw new UsuarioException(UsuarioException.UPDATE, objeto);
+        }
     }
 
-    public void delete(Usuario objeto) {
-        this.usuarios.remove(objeto);
+    public void delete(Usuario objeto) throws UsuarioException{
+        boolean remocao = this.usuarios.remove(objeto);
+        if (!remocao){
+            throw new UsuarioException(UsuarioException.DELETE, objeto);
+        }
     }
 
-    public Usuario buscarporId(Integer id) {
+    public Usuario buscarporId(Integer id) throws UsuarioException{
         for (Usuario Usuario : this.usuarios) {
             if (Usuario.getNumIdentificacao() == id) {
                 return Usuario;
             }
         }
-        return null;
+        throw new UsuarioException(UsuarioException.BUSCA_ID, null);
     }
 
 }
