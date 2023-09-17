@@ -1,14 +1,16 @@
 package dao.emprestimo;
 
+import exceptions.EmprestimoException;
 import model.Emprestimo;
 import model.Livro;
+import model.Usuario;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
-import java.util.Queue;
+
 
 public class EmprestimoDAOlist implements EmprestimoDAO {
     private List<Emprestimo> emprestimos;
@@ -18,15 +20,15 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
     }
 
     @Override
-    public Emprestimo create(Emprestimo objeto) {
+    public Emprestimo create(Emprestimo objeto) throws EmprestimoException{
         if (objeto.getUsuario().getStatusConta().equals("Bloqueado")) {
-            return null;
+            throw new EmprestimoException(EmprestimoException.CREATE_1, null);
         }
 
         Livro livro = objeto.getLivro();
 
         if ("Emprestado".equals(livro.getStatusLivro())) {
-            return null;
+            throw new EmprestimoException(EmprestimoException.CREATE_2, null);
         } else if (!objeto.getLivro().getReservas().isEmpty()) {
             Emprestimo reserva = livro.proxReserva();
             if (reserva != null && reserva.getUsuario().getNumIdentificacao().equals(objeto.getUsuario().getNumIdentificacao())) {
@@ -35,7 +37,7 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
                 livro.tiraFilareserva();
                 return objeto;
             } else {
-                return null;
+                throw new EmprestimoException(EmprestimoException.CREATE_3, null);
             }
         } else {
             livro.setStatusLivro("Emprestado");
@@ -50,31 +52,50 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
     }
 
     @Override
-    public Emprestimo update(Emprestimo obj) {
-        return null;
+    public Emprestimo update(Emprestimo objeto) throws EmprestimoException{
+        int index = this.emprestimos.indexOf(objeto);
+        if (index != -1){
+            this.emprestimos.set(index, objeto);
+            return objeto;
+        }
+        throw new EmprestimoException(EmprestimoException.UPDATE, objeto);
     }
 
     @Override
-    public void delete(Emprestimo objeto) {
-        this.emprestimos.remove(objeto);
+    public void delete(Emprestimo objeto) throws EmprestimoException{
+        boolean remove = this.emprestimos.remove(objeto);
+        if (!remove){
+            throw new EmprestimoException(EmprestimoException.DELETE, objeto);
+        }
     }
 
     @Override
-    public Emprestimo buscarporId(Integer id) {
-        return null;
+    public Emprestimo buscarporId(Integer id) throws EmprestimoException {
+        for (int i = this.emprestimos.size() - 1; i >= 0; i--) {
+            Emprestimo emprestimo = this.emprestimos.get(i);
+            if (emprestimo.getId().equals(id)) {
+                return emprestimo;
+            }
+        }
+        throw new EmprestimoException(EmprestimoException.BUSCA_ID, null);
     }
 
-    public List<Emprestimo> buscarEmprestimosporId(Integer id) {
+
+
+    public List<Emprestimo> buscarEmprestimosporId(Integer id) throws EmprestimoException{
         List<Emprestimo> listEmprestimos = new ArrayList<>();
         for (Emprestimo emprestimo : this.emprestimos) {
             if (emprestimo.getId().equals(id)) {
                 listEmprestimos.add(emprestimo);
             }
         }
-        return listEmprestimos;
+        if (!listEmprestimos.isEmpty()){
+            return listEmprestimos;
+        }
+        throw new EmprestimoException(EmprestimoException.BUSCAS_POR_ID, null);
     }
 
-    public Integer calcularMulta(Emprestimo objeto) {
+    public Integer calcularMulta(Emprestimo objeto) throws EmprestimoException{
         if (objeto != null) {
             LocalDate dataDevolucao = objeto.getDataDevolucao();
             LocalDate entregaFeita = LocalDate.now();
@@ -85,14 +106,30 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
                 return valorMulta;
             }
         }
-        return 0;
+        throw new EmprestimoException(EmprestimoException.MULTA, objeto);
     }
 
-    public Emprestimo renovarEmprestimo(Emprestimo objeto) {
-        return null;
+    public Emprestimo renovarEmprestimo(Emprestimo objeto) throws EmprestimoException{
+        Usuario usuario = objeto.getUsuario();
+        if (objeto.getLivro().getReservas().isEmpty()) {
+            if (objeto.getUsuario().getLimRenovacao() > 0) {
+                LocalDate novaDataDevolucao = objeto.getDataDevolucao().plusDays(7);
+                objeto.setDataDevolucao(novaDataDevolucao);
+
+                usuario.setlimRenovacao(usuario.getLimRenovacao() - 1);
+                return objeto;
+            }
+            else{
+                throw new EmprestimoException(EmprestimoException.RENOVAR_1, objeto);
+            }
+        }
+        else{
+            throw new EmprestimoException(EmprestimoException.RENOVAR_2, objeto);
+        }
     }
 
-    public Emprestimo registrarDevolucao(Emprestimo objeto) {
+
+    public Emprestimo registrarDevolucao(Emprestimo objeto) throws EmprestimoException{
         if (objeto != null) {
             if (objeto.getLivro().getStatusLivro().equals("Emprestado")) {
                 objeto.getLivro().setStatusLivro("Disponivel");
@@ -104,15 +141,15 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
                 }
             }
         }
-        return null;
+        throw new EmprestimoException(EmprestimoException.DEVOLUCAO, objeto);
     }
 
-    public Emprestimo realizarReserva(Emprestimo objeto) {
+    public Emprestimo realizarReserva(Emprestimo objeto) throws EmprestimoException{
         if (objeto!=null){
                 objeto.getLivro().addReserva(objeto);
                 return objeto;
         }
-        return null;
+        throw new EmprestimoException(EmprestimoException.RESERVA, objeto);
     }
     
 }
