@@ -1,5 +1,6 @@
 package dao.bibliotecario;
 
+import exceptions.BibliotecarioExcpetion;
 import model.Bibliotecario;
 
 import java.util.ArrayList;
@@ -26,25 +27,30 @@ public class BibliotecarioDAOlist implements BibliotecarioDAO{
         return bibliotecarios;
     }
 
-    public Bibliotecario update(Bibliotecario objeto) {
+    public Bibliotecario update(Bibliotecario objeto) throws BibliotecarioExcpetion{
         int index = this.bibliotecarios.indexOf(objeto);
         if (index != -1){
             this.bibliotecarios.set(index, objeto);
             return objeto;
         }
-        return null;
+        else {
+            throw new BibliotecarioExcpetion(BibliotecarioExcpetion.UPDATE, objeto);
+        }
     }
 
-    public void delete(Bibliotecario objeto) {
-        this.bibliotecarios.remove(objeto);
+    public void delete(Bibliotecario objeto) throws BibliotecarioExcpetion {
+        boolean remove = this.bibliotecarios.remove(objeto);
+        if (!remove){
+            throw new BibliotecarioExcpetion(BibliotecarioExcpetion.DELETE, objeto);
+        }
     }
 
-    public Bibliotecario buscarporId(Integer id) {
+    public Bibliotecario buscarporId(Integer id) throws BibliotecarioExcpetion{
         for (Bibliotecario Bibliotecario : this.bibliotecarios) {
             if (Bibliotecario.getNumIdentificacao() == id) {
                 return Bibliotecario;
             }
         }
-        return null;
+        throw new BibliotecarioExcpetion(BibliotecarioExcpetion.BUSCA_ID, null);
     }
 }
