@@ -4,14 +4,14 @@ public class Usuario extends Pessoa {
     private String endereco;
     private Integer telefone;
     private String statusConta;
-    private Integer limReservas;
+    private Integer limRenovacao;
 
     public Usuario(String nome ,String endereco, Integer telefone) {
         super(nome);
         this.endereco = endereco;
         this.telefone = telefone;
         this.statusConta = "Liberado";
-        this.limReservas = 2;
+        this.limRenovacao = 2;
     }
 
     public String getEndereco() {
@@ -38,12 +38,12 @@ public class Usuario extends Pessoa {
         this.statusConta = statusConta;
     }
 
-    public Integer getLimReservas() {
-        return limReservas;
+    public Integer getLimRenovacao() {
+        return limRenovacao;
     }
 
-    public void setLimReservas(Integer limReservas) {
-        this.limReservas = limReservas;
+    public void setlimRenovacao(Integer limRenovacao) {
+        this.limRenovacao= limRenovacao;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Usuario extends Pessoa {
                 "endereco='" + endereco + '\'' +
                 ", telefone=" + telefone +
                 ", statusConta='" + statusConta + '\'' +
-                ", limReservas=" + limReservas +
+                ", limReservas=" + limRenovacao +
                 '}';
     }
 }
