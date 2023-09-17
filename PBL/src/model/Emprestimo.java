@@ -17,6 +17,10 @@ public class Emprestimo {
         this.id = usuario.getNumIdentificacao();
     }
 
+    public void setDataDevolucao(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+    }
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
