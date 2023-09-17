@@ -1,5 +1,6 @@
 package dao.administrador;
 
+import exceptions.AdmException;
 import model.Administrador;
 
 import java.util.ArrayList;
@@ -26,24 +27,29 @@ public class AdmDAOlist implements AdmDAO {
         return adms;
     }
 
-    public Administrador update(Administrador objeto) {
+    public Administrador update(Administrador objeto) throws AdmException {
         int index = this.adms.indexOf(objeto);
         if (index != -1){
             this.adms.set(index, objeto);
             return objeto;
         }
-        return null;
+        throw new AdmException(AdmException.UPDATE, objeto);
+
     }
-    public void delete(Administrador objeto) {
-        this.adms.remove(objeto);
+    public void delete(Administrador objeto) throws AdmException{
+        boolean remove = this.adms.remove(objeto);
+        if (!remove){
+            throw new AdmException(AdmException.DELETE, objeto);
+        }
+
     }
 
-    public Administrador buscarporId(Integer id) {
+    public Administrador buscarporId(Integer id) throws AdmException{
         for (Administrador Administrador : this.adms) {
             if (Administrador.getNumIdentificacao() == id) {
                 return Administrador;
             }
         }
-        return null;
+        throw new AdmException(AdmException.BUSCA_ID, null);
     }
 }
