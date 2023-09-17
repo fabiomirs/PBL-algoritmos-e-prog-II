@@ -1,5 +1,6 @@
 package dao.livro;
 
+import exceptions.LivroException;
 import model.Livro;
 
 import java.util.ArrayList;
@@ -26,65 +27,85 @@ public class LivroDAOlist implements LivroDAO {
         return Livros;
     }
 
-    public Livro update(Livro objeto) {
+    public Livro update(Livro objeto) throws LivroException{
         int index = this.Livros.indexOf(objeto);
         if (index != -1){
             this.Livros.set(index, objeto);
             return objeto;
         }
-        return null;
+        else{
+            throw new LivroException(LivroException.UPDATE, objeto);
+        }
     }
 
-    public void delete(Livro objeto) {
-        this.Livros.remove(objeto);
+    public void delete(Livro objeto) throws LivroException{
+        boolean remove = this.Livros.remove(objeto);
+        if (!remove){
+            throw new LivroException(LivroException.DELETE, objeto);
+        }
     }
 
-    public Livro buscarporId(Integer id) {
+    public Livro buscarporId(Integer id) throws LivroException{
         for (Livro Livro : this.Livros) {
             if (Livro.getId() == id) {
                 return Livro;
             }
         }
-        return null;
+        throw new LivroException(LivroException.BUSCA_ID, null);
     }
 
-    public List<Livro> buscarporTitulo(String titulo){
+    public List<Livro> buscarporTitulo(String titulo) throws LivroException{
         List<Livro> listLivro = new ArrayList<Livro>();
         for (Livro livro: this.Livros) {
             if (livro.getTitulo() == titulo) {
                 listLivro.add(livro);
             }
+        }if (listLivro.isEmpty()){
+            throw new LivroException(LivroException.BUSCA_TITULO, null);
+        }else {
+            return listLivro;
         }
-        return listLivro;
     }
-    public List<Livro> buscarporAutor(String autor){
+    public List<Livro> buscarporAutor(String autor) throws LivroException{
         List<Livro> listLivro = new ArrayList<Livro>();
         for (Livro livro: this.Livros) {
             if (livro.getAutor() == autor) {
                 listLivro.add(livro);
             }
         }
-        return listLivro;
+        if (listLivro.isEmpty()){
+            throw new LivroException(LivroException.BUSCA_AUTOR, null);
+        }else {
+            return listLivro;
+        }
     }
 
-    public List<Livro> buscarPorIsbn(Integer isbn) {
+    public List<Livro> buscarPorIsbn(Integer isbn) throws LivroException{
         List<Livro> listLivro = new ArrayList<>();
         for (Livro livro : this.Livros) {
             if (livro.getCodigoIsbn().equals(isbn)) {
                 listLivro.add(livro);
             }
         }
-        return listLivro;
+        if (listLivro.isEmpty()){
+            throw new LivroException(LivroException.BUSCA_ISBN, null);
+        }else {
+            return listLivro;
+        }
     }
 
-    public List<Livro> buscarPorCategoria(String categoria){
+    public List<Livro> buscarPorCategoria(String categoria) throws LivroException {
        List<Livro> listLivro = new ArrayList<>();
        for (Livro livro : this.Livros) {
            if (livro.getCategoria() == categoria){
                listLivro.add(livro);
            }
        }
+       if (listLivro.isEmpty()){
+           throw new LivroException(LivroException.BUSCA_CATEGORIA, null);
+       }else {
        return listLivro;
+    }
     }
 
 
