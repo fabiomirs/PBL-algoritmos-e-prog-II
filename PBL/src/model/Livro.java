@@ -45,6 +45,19 @@ public class Livro {
         this.categoria = categoria;
     }
 
+    public Livro(String titulo, String editora, Integer codigoIsbn, String localizacao,
+                 String autor, String anoPublicacao, String categoria, int id) {
+        this.titulo = titulo;
+        this.editora = editora;
+        this.codigoIsbn = codigoIsbn;
+        this.localizacao = localizacao;
+        this.statusLivro = "Disponivel";
+        this.autor = autor;
+        this.anoPublicacao = anoPublicacao;
+        this.id = id;
+        this.categoria = categoria;
+    }
+
     public int getProximoId() {
         return proximoId;
     }
@@ -143,6 +156,11 @@ public class Livro {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Livro livro = (Livro) o;
-        return proximoId == livro.proximoId && Objects.equals(titulo, livro.titulo) && Objects.equals(editora, livro.editora) && Objects.equals(codigoIsbn, livro.codigoIsbn) && Objects.equals(localizacao, livro.localizacao) && Objects.equals(statusLivro, livro.statusLivro) && Objects.equals(autor, livro.autor) && Objects.equals(anoPublicacao, livro.anoPublicacao) && Objects.equals(id, livro.id) && Objects.equals(categoria, livro.categoria);
+        return proximoId == livro.proximoId && Objects.equals(titulo, livro.titulo) && Objects.equals(editora, livro.editora) && Objects.equals(codigoIsbn, livro.codigoIsbn) && Objects.equals(localizacao, livro.localizacao) && Objects.equals(statusLivro, livro.statusLivro) && Objects.equals(autor, livro.autor) && Objects.equals(anoPublicacao, livro.anoPublicacao) && Objects.equals(id, livro.id) && Objects.equals(categoria, livro.categoria) && Objects.equals(reservas, livro.reservas);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, editora, codigoIsbn, localizacao, statusLivro, autor, anoPublicacao, id, proximoId, categoria, reservas);
     }
 }
