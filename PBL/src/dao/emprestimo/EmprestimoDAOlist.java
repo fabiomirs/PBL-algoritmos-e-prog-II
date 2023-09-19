@@ -19,8 +19,10 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
         this.emprestimos = new ArrayList<>();
     }
 
+    public Emprestimo create(Emprestimo objeto){return objeto;};
+
     @Override
-    public Emprestimo create(Emprestimo objeto) throws EmprestimoException{
+    public Emprestimo criarEmprestimo(Emprestimo objeto) throws EmprestimoException{
         if (objeto.getUsuario().getStatusConta().equals("Bloqueado")) {
             throw new EmprestimoException(EmprestimoException.CREATE_1, null);
         }
@@ -67,6 +69,11 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
         if (!remove){
             throw new EmprestimoException(EmprestimoException.DELETE, objeto);
         }
+    }
+
+    @Override
+    public void deleteMany() {
+        this.emprestimos = new ArrayList<>();
     }
 
     @Override
