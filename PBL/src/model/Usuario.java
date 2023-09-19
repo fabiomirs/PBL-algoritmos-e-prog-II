@@ -6,6 +6,15 @@ public class Usuario extends Pessoa {
     private String statusConta;
     private Integer limRenovacao;
 
+
+    public Usuario(String nome ,String endereco, Integer telefone, int id) {
+        super(nome, id);
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.statusConta = "Liberado";
+        this.limRenovacao = 2;
+    }
+
     public Usuario(String nome ,String endereco, Integer telefone) {
         super(nome);
         this.endereco = endereco;
@@ -13,6 +22,7 @@ public class Usuario extends Pessoa {
         this.statusConta = "Liberado";
         this.limRenovacao = 2;
     }
+
 
     public String getEndereco() {
         return endereco;
