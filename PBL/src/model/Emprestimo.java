@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Emprestimo {
     private Livro livro;
@@ -48,6 +49,19 @@ public class Emprestimo {
                 "dataEmprestimo=" + dataEmprestimo.format(formatar) +
                 ", dataDevolucao=" + dataDevolucao.format(formatar) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Emprestimo that = (Emprestimo) o;
+        return Objects.equals(livro, that.livro) && Objects.equals(usuario, that.usuario) && Objects.equals(dataEmprestimo, that.dataEmprestimo) && Objects.equals(dataDevolucao, that.dataDevolucao) && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(livro, usuario, dataEmprestimo, dataDevolucao, id);
     }
 }
 
