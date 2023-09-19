@@ -45,6 +45,12 @@ public class LivroDAOlist implements LivroDAO {
         }
     }
 
+    @Override
+    public void deleteMany() {
+        this.Livros = new ArrayList<>();
+        this.proximoID = 0;
+    }
+
     public Livro buscarporId(Integer id) throws LivroException{
         for (Livro Livro : this.Livros) {
             if (Livro.getId() == id) {
@@ -96,15 +102,15 @@ public class LivroDAOlist implements LivroDAO {
 
     public List<Livro> buscarPorCategoria(String categoria) throws LivroException {
        List<Livro> listLivro = new ArrayList<>();
-       for (Livro livro : this.Livros) {
-           if (livro.getCategoria() == categoria){
-               listLivro.add(livro);
-           }
-       }
+        for (Livro livro : this.Livros) {
+            if (livro.getCategoria().equalsIgnoreCase(categoria)) {
+                listLivro.add(livro);
+            }
+        }
        if (listLivro.isEmpty()){
            throw new LivroException(LivroException.BUSCA_CATEGORIA, null);
        }else {
-       return listLivro;
+           return listLivro;
     }
     }
 
