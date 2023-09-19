@@ -45,6 +45,12 @@ public class BibliotecarioDAOlist implements BibliotecarioDAO{
         }
     }
 
+    @Override
+    public void deleteMany() {
+        this.bibliotecarios = new ArrayList<>();
+        this.proximoID = 0;
+    }
+
     public Bibliotecario buscarporId(Integer id) throws BibliotecarioExcpetion{
         for (Bibliotecario Bibliotecario : this.bibliotecarios) {
             if (Bibliotecario.getNumIdentificacao() == id) {

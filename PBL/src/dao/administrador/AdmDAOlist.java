@@ -44,6 +44,12 @@ public class AdmDAOlist implements AdmDAO {
 
     }
 
+    @Override
+    public void deleteMany() {
+        this.adms = new ArrayList<>();
+        this.proximoID = 0;
+    }
+
     public Administrador buscarporId(Integer id) throws AdmException{
         for (Administrador Administrador : this.adms) {
             if (Administrador.getNumIdentificacao() == id) {

@@ -47,6 +47,12 @@ public class UsuarioDAOlist implements UsuarioDAO {
         }
     }
 
+    @Override
+    public void deleteMany() {
+        this.usuarios = new ArrayList<>();
+        this.proximoID = 0;
+    }
+
     public Usuario buscarporId(Integer id) throws UsuarioException{
         for (Usuario Usuario : this.usuarios) {
             if (Usuario.getNumIdentificacao() == id) {
