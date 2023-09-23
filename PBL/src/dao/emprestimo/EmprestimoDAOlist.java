@@ -7,9 +7,7 @@ import model.Usuario;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-
-import java.util.List;
+import java.util.*;
 
 
 public class EmprestimoDAOlist implements EmprestimoDAO {
@@ -76,6 +74,74 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
     public void deleteMany() {
         this.emprestimos = new ArrayList<>();
     }
+    public int numeroLivrosEmprestados() {
+        int contador = 0;
+        for (Emprestimo emprestimo : emprestimos) {
+            if ("Em aberto".equals(emprestimo.getStatus())) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public int numeroLivrosReservados() {
+        int contador = 0;
+        for (Emprestimo emprestimo : emprestimos) {
+            if (!emprestimo.getLivro().getReservas().isEmpty()) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public int numeroLivrosAtrasados() {
+        int contador = 0;
+        LocalDate hoje = LocalDate.now();
+
+        for (Emprestimo emprestimo : emprestimos) {
+            LocalDate dataDevolucao = emprestimo.getDataDevolucao();
+            if (hoje.isAfter(dataDevolucao)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public List<Emprestimo> historicoEmprestimosUsuario(int idUsuario) {
+        List<Emprestimo> historico = new ArrayList<>();
+        for (Emprestimo emprestimo : emprestimos) {
+            if (emprestimo.getId() == idUsuario) {
+                historico.add(emprestimo);
+            }
+        }
+        return historico;
+    }
+
+
+    public List<Livro> livrosMaisPopulares() {
+        Map<Livro, Integer> mapLivrosEmprestimos = new HashMap<>();
+
+        //preenche o map com uma chave, o livro, e um valor que corresponde a quantidade de vezes que o livro foi emprestado
+        for (Emprestimo emprestimo : emprestimos) {
+            Livro livro = emprestimo.getLivro();
+            mapLivrosEmprestimos.put(livro, mapLivrosEmprestimos.getOrDefault(livro, 0) + 1);
+        }
+
+        List<Map.Entry<Livro, Integer>> listaOrdenada = new ArrayList<>(mapLivrosEmprestimos.entrySet());
+
+        listaOrdenada.sort(Comparator.comparing(Map.Entry::getValue));
+
+        Collections.reverse(listaOrdenada);
+
+        List<Livro> top3Livros = new ArrayList<>();
+        for (int i = 0; i < Math.min(3, listaOrdenada.size()); i++) {
+            top3Livros.add(listaOrdenada.get(i).getKey());
+        }
+
+        return top3Livros;
+    }
+
+
 
     @Override
     public Emprestimo buscarporId(Integer id) throws EmprestimoException {
