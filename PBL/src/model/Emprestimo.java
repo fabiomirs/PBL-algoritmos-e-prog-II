@@ -10,12 +10,22 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
     private Integer id;
+    private String status;
     public Emprestimo(Livro livro,Usuario usuario){
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = LocalDate.now();
         this.dataDevolucao = this.dataEmprestimo.plusDays(7);
         this.id = usuario.getNumIdentificacao();
+        this.status = "Fechado";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setDataDevolucao(LocalDate dataDevolucao) {
