@@ -35,14 +35,15 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
             Emprestimo reserva = livro.proxReserva();
             if (reserva != null && reserva.getUsuario().getNumIdentificacao().equals(objeto.getUsuario().getNumIdentificacao())) {
                 livro.setStatusLivro("Emprestado");
+                objeto.setStatus("Em aberto");
                 this.emprestimos.add(objeto);
-                livro.tiraFilareserva();
                 return objeto;
             } else {
                 throw new EmprestimoException(EmprestimoException.CREATE_3, null);
             }
         } else {
             livro.setStatusLivro("Emprestado");
+            objeto.setStatus("Em aberto");
             this.emprestimos.add(objeto);
             return objeto;
         }
@@ -89,7 +90,7 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
 
 
 
-    public List<Emprestimo> buscarEmprestimosporId(Integer id) throws EmprestimoException{
+    public List<Emprestimo> buscarEmprestimosporId(Integer id) throws EmprestimoException{ //retorna todos os empréstimos feitos por um usuário
         List<Emprestimo> listEmprestimos = new ArrayList<>();
         for (Emprestimo emprestimo : this.emprestimos) {
             if (emprestimo.getId().equals(id)) {
@@ -112,47 +113,73 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
                 Integer valorMulta = diasAtraso * 2;
                 return valorMulta;
             }
+            else{
+                return 0;
+            }
         }
         throw new EmprestimoException(EmprestimoException.MULTA, objeto);
     }
 
     public Emprestimo renovarEmprestimo(Emprestimo objeto) throws EmprestimoException{
         Usuario usuario = objeto.getUsuario();
+        Integer multa = calcularMulta(objeto);
         if (objeto.getLivro().getReservas().isEmpty()) {
-            if (objeto.getUsuario().getLimRenovacao() > 0) {
-                LocalDate novaDataDevolucao = objeto.getDataDevolucao().plusDays(7);
-                objeto.setDataDevolucao(novaDataDevolucao);
+            if (objeto.getStatus().equals("Em aberto")){
+                if (multa==0){
+                    if (objeto.getUsuario().getLimRenovacao() > 0) {
+                        LocalDate novaDataDevolucao = objeto.getDataDevolucao().plusDays(7);
+                        objeto.setDataDevolucao(novaDataDevolucao);
 
-                usuario.setlimRenovacao(usuario.getLimRenovacao() - 1);
-                return objeto;
+                        usuario.setlimRenovacao(usuario.getLimRenovacao() - 1);
+                        return objeto;
+                    }
+                    else{
+                        throw new EmprestimoException(EmprestimoException.RENOVAR_1, objeto);
+                    }
+                }
+                else{
+                    throw new EmprestimoException(EmprestimoException.RENOVAR_2, objeto);
+                }
+
             }
             else{
-                throw new EmprestimoException(EmprestimoException.RENOVAR_1, objeto);
+                throw new EmprestimoException(EmprestimoException.RENOVAR_3, objeto);
             }
+
         }
         else{
-            throw new EmprestimoException(EmprestimoException.RENOVAR_2, objeto);
+            throw new EmprestimoException(EmprestimoException.RENOVAR_4, objeto);
         }
     }
 
 
     public Emprestimo registrarDevolucao(Emprestimo objeto) throws EmprestimoException{
         if (objeto != null) {
-            if (objeto.getLivro().getStatusLivro().equals("Emprestado")) {
+            Integer multa = calcularMulta(objeto);
+            if (objeto.getStatus().equals("Em aberto")){
+                if (multa>0){
+                    throw new EmprestimoException(EmprestimoException.MULTADO, objeto);
+                }
                 objeto.getLivro().setStatusLivro("Disponivel");
+                objeto.setStatus("Fechado");
+
                 if (objeto.getLivro().proxReserva() != null){
                     Emprestimo proximo = objeto.getLivro().proxReserva();
 
                     objeto.getLivro().tiraFilareserva();
                     return proximo;
                 }
+
+        }else{
+                throw new EmprestimoException(EmprestimoException.DEVOLUCAO_2, objeto);
             }
+
         }
         throw new EmprestimoException(EmprestimoException.DEVOLUCAO, objeto);
     }
 
     public Emprestimo realizarReserva(Emprestimo objeto) throws EmprestimoException{
-        if (objeto!=null){
+        if (objeto!=null && objeto.getStatus().equals("Fechado") && objeto.getUsuario().equals("Bloqueado")){
                 objeto.getLivro().addReserva(objeto);
                 return objeto;
         }
