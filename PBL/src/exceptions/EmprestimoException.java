@@ -17,10 +17,18 @@ public class EmprestimoException extends Exception{
     public static final String MULTA = "Não é necessário calcular multa para esse usuário.";
 
     public static final String RENOVAR_1 = "O usuário já atingiu o limite de renovações.";
-    public static final String RENOVAR_2 = "Já existem reservas para esse livro.";
+    public static final String RENOVAR_2 = "O usuário está multado.";
+
+    public static final String RENOVAR_3 = "O empréstimo já foi encerrado.";
+
+    public static final String RENOVAR_4 = "Já existem reservas para esse livro.";
 
     public static final String RESERVA = "Impossível realizar reserva.";
+    public static final String MULTADO = "O usuário está multado";
+
     public static final String DEVOLUCAO = "A devolução não foi contabilizada, por se tratar de um empréstimo inválido.";
+    public static final String DEVOLUCAO_2 = "A devolução não foi contabilizada, por se tratar de um empréstimo já finalizado.";
+
     private Emprestimo emprestimo;
 
     public EmprestimoException(String message, Emprestimo emprestimo) {
