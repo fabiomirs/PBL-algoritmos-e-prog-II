@@ -15,12 +15,12 @@ public class Livro {
     private Integer id;
     private int proximoId;
     private String categoria;
-    private Queue<Emprestimo> reservas = new LinkedList<>();
+    private Queue<Usuario> reservas = new LinkedList<>();
 
-    public void addReserva(Emprestimo objeto){
+    public void addReserva(Usuario objeto){
         reservas.offer(objeto);
     }
-    public Emprestimo proxReserva(){
+    public Usuario proxReserva(){
         return reservas.peek();
     }
 
@@ -28,7 +28,7 @@ public class Livro {
         reservas.poll();
     }
 
-    public Queue<Emprestimo> getReservas() {
+    public Queue<Usuario> getReservas() {
         return reservas;
     }
 
