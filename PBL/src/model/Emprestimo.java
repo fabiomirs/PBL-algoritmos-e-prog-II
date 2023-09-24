@@ -19,6 +19,14 @@ public class Emprestimo {
         this.id = usuario.getNumIdentificacao();
         this.status = "Fechado";
     }
+    public Emprestimo(Livro livro,Usuario usuario, Integer id){
+        this.livro = livro;
+        this.usuario = usuario;
+        this.dataEmprestimo = LocalDate.now();
+        this.dataDevolucao = this.dataEmprestimo.plusDays(7);
+        this.id = id;
+        this.status = "Fechado";
+    }
 
     public String getStatus() {
         return status;
@@ -66,12 +74,12 @@ public class Emprestimo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Emprestimo that = (Emprestimo) o;
-        return Objects.equals(livro, that.livro) && Objects.equals(usuario, that.usuario) && Objects.equals(dataEmprestimo, that.dataEmprestimo) && Objects.equals(dataDevolucao, that.dataDevolucao) && Objects.equals(id, that.id);
+        return Objects.equals(livro, that.livro) && Objects.equals(usuario, that.usuario) && Objects.equals(dataEmprestimo, that.dataEmprestimo) && Objects.equals(dataDevolucao, that.dataDevolucao) && Objects.equals(id, that.id) && Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(livro, usuario, dataEmprestimo, dataDevolucao, id);
+        return Objects.hash(livro, usuario, dataEmprestimo, dataDevolucao, id, status);
     }
 }
 
