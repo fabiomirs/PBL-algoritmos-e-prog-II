@@ -23,8 +23,11 @@ public class EmprestimoException extends Exception{
 
     public static final String RENOVAR_4 = "Já existem reservas para esse livro.";
 
-    public static final String RESERVA = "Impossível realizar reserva.";
-    public static final String MULTADO = "O usuário está multado";
+    public static final String MULTADO = "O usuário está multado.";
+    public static final String EMPRESTADOS = "Não existem empréstimos realizados.";
+    public static final String POPULAR = "Ainda não foram contabilizados empréstimos.";
+    public static final String ATRASO = "Não existem emprestimos que estão em atraso.";
+    public static final String HISTORICO = "O usuário ainda não realizou nenhum empréstimo.";
 
     public static final String DEVOLUCAO = "A devolução não foi contabilizada, por se tratar de um empréstimo inválido.";
     public static final String DEVOLUCAO_2 = "A devolução não foi contabilizada, por se tratar de um empréstimo já finalizado.";
