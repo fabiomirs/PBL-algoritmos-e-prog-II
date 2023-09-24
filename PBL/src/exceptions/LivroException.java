@@ -14,6 +14,8 @@ public class LivroException extends Exception{
     public static final String BUSCA_AUTOR = "Não foram encontrados livros escritos por este autor.";
     public static final String BUSCA_ISBN = "Não foram encontrados livros com este código ISBN.";
     public static final String BUSCA_CATEGORIA = "Não foram encontrados livros para a categoria desejada.";
+    public static final String RESERVA = "Impossível realizar reserva.";
+    public static final String QTD_RESERVA = "Não existem livros com reservas feitas.";
     private Livro livro;
 
     public LivroException(String message, Livro livro) {
