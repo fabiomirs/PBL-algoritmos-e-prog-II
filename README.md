@@ -17,7 +17,7 @@
 
 ### Diagrama de casos de uso
 
-![Diagrama de casos de uso](Diagramas/Diagrama de casos de uso.jpg)
+![Diagrama de casos de uso](Diagramas/Diagrama_casos.jpg)
 
 ### Requisitos do sistema
 
