@@ -243,7 +243,7 @@ class LivroDAOlistTest {
     @Test
     void LivrosComReserva() throws LivroException {
         Usuario usuariotest = new Usuario("nome teste","Rua teste", 7534682,100, "Liberado");
-        DAO.getLivroDAO().realizarReserva(usuariotest, livro3);
+        DAO.getLivroDAO().realizarReserva(usuariotest, livro3.getId());
         assertEquals(1, DAO.getLivroDAO().livrosComReserva().size());
     }
 
@@ -261,8 +261,8 @@ class LivroDAOlistTest {
     void realizarReserva() throws LivroException{
         Usuario usuariotst = new Usuario("nome teste","Rua teste", 7534682,100, "Liberado");
         Usuario usuario2tst = new Usuario("nteste","Rteste", 7532,101, "Liberado");
-        DAO.getLivroDAO().realizarReserva(usuariotst,livro1);
-        DAO.getLivroDAO().realizarReserva(usuario2tst,livro1);
+        DAO.getLivroDAO().realizarReserva(usuariotst,livro1.getId());
+        DAO.getLivroDAO().realizarReserva(usuario2tst,livro1.getId());
         assertEquals(2, livro1.getReservas().size());
 
     }
@@ -271,7 +271,7 @@ class LivroDAOlistTest {
     void failrealizarReserva() throws LivroException{
         try{
             Usuario usuariotst2 = new Usuario("nome teste","Rua teste", 7534682,100, "Bloqueado");
-            DAO.getLivroDAO().realizarReserva(usuariotst2, livro3);
+            DAO.getLivroDAO().realizarReserva(usuariotst2, livro3.getId());
         }catch (LivroException e){
             assertEquals(LivroException.RESERVA, e.getMessage());
         }
