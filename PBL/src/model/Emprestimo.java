@@ -1,9 +1,11 @@
 package model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * A classe Emprestimo representa um empréstimo de um livro para um usuário no sistema de biblioteca.
+ */
 public class Emprestimo {
     private Livro livro;
     private Usuario usuario;
@@ -11,7 +13,14 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
     private Integer id;
     private String status;
-    public Emprestimo(Livro livro,Usuario usuario){
+
+    /**
+     * Cria um novo registro de empréstimo com o livro e usuário especificados.
+     * A data de empréstimo é determinada como a data atual e a data de devolução é determinada como 7 dias após a data de empréstimo.
+     * @param livro O livro que está sendo emprestado.
+     * @param usuario O usuário que está fazendo o empréstimo.
+     */
+    public Emprestimo(Livro livro, Usuario usuario) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = LocalDate.now();
@@ -19,7 +28,15 @@ public class Emprestimo {
         this.id = usuario.getNumIdentificacao();
         this.status = "Fechado";
     }
-    public Emprestimo(Livro livro,Usuario usuario, Integer id){
+
+    /**
+     * Cria um novo registro de empréstimo com o livro, usuário e ID especificados.
+     * A data de empréstimo é determinada como a data atual e a data de devolução é determinada como 7 dias após a data de empréstimo.
+     * @param livro O livro que está sendo emprestado.
+     * @param usuario O usuário que está fazendo o empréstimo.
+     * @param id O ID único do empréstimo.
+     */
+    public Emprestimo(Livro livro, Usuario usuario, Integer id) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = LocalDate.now();
@@ -28,47 +45,75 @@ public class Emprestimo {
         this.status = "Fechado";
     }
 
+    /**
+     * Obtém o status do empréstimo.
+     * @return O status do empréstimo.
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Determina o status do empréstimo.
+     * @param status O status do empréstimo a ser determinado.
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
+    /**
+     * Determina a data de devolução do empréstimo.
+     * @param dataDevolucao A data de devolução a ser determinada.
+     */
     public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
+    /**
+     * Obtém a data de empréstimo.
+     * @return A data de empréstimo.
+     */
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
 
+    /**
+     * Obtém a data de devolução do empréstimo.
+     * @return A data de devolução do empréstimo.
+     */
     public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
 
+    /**
+     * Obtém o ID do empréstimo.
+     * @return O ID do empréstimo.
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Obtém o livro emprestado.
+     * @return O livro emprestado.
+     */
     public Livro getLivro() {
         return livro;
     }
 
+    /**
+     * Obtém o usuário que fez o empréstimo.
+     * @return O usuário que fez o empréstimo.
+     */
     public Usuario getUsuario() {
         return usuario;
     }
 
-    @Override
-    public String toString() {
-        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Emprestimo{" +
-                "dataEmprestimo=" + dataEmprestimo.format(formatar) +
-                ", dataDevolucao=" + dataDevolucao.format(formatar) +
-                '}';
-    }
-
+    /**
+     * Compara este empréstimo com outro objeto para determinar se são iguais.
+     * @param o O objeto a ser comparado.
+     * @return True se os objetos são iguais, False caso contrário.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,11 +121,4 @@ public class Emprestimo {
         Emprestimo that = (Emprestimo) o;
         return Objects.equals(livro, that.livro) && Objects.equals(usuario, that.usuario) && Objects.equals(dataEmprestimo, that.dataEmprestimo) && Objects.equals(dataDevolucao, that.dataDevolucao) && Objects.equals(id, that.id) && Objects.equals(status, that.status);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(livro, usuario, dataEmprestimo, dataDevolucao, id, status);
-    }
 }
-
-
