@@ -2,9 +2,14 @@ package exceptions;
 
 import model.Livro;
 
+/**
+ * A classe LivroException é uma exceção personalizada que pode ser lançada relacionada aos livros.
+ */
 public class LivroException extends Exception{
 
-    /** Mensagens estáticas para as exceções*/
+    /**
+     * Mensagens estáticas para as exceções
+     */
     public static final String DELETE = "Operação de exclusão não realizada.";
 
     public static final String UPDATE = "Operação de atualização não realizada.";
@@ -18,6 +23,11 @@ public class LivroException extends Exception{
     public static final String QTD_RESERVA = "Não existem livros com reservas feitas.";
     private Livro livro;
 
+    /**
+     * Cria uma instância de LivroException com uma mensagem de erro específica e uma referência ao livro afetado.
+     * @param message A mensagem de erro que descreve a exceção.
+     * @param livro O livro relacionado à exceção.
+     */
     public LivroException(String message, Livro livro) {
         super(message);
         this.livro = livro;
