@@ -29,7 +29,6 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
     public Emprestimo create(Emprestimo objeto){return objeto;};
 
     public Emprestimo criarEmprestimo(Emprestimo objeto) throws EmprestimoException {
-        Integer multa = calcularMulta(objeto);
 
         // Verifica se o usuário possui multa em algum empréstimo em aberto
         for (Emprestimo emprestimoUsuario : emprestimos) {
@@ -88,7 +87,7 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
     }
 
     /**
-     *
+     * Método utilizado para atualizar os dados de um empréstimo.
      * @param objeto O empréstimo que se tem interesse em atualizar.
      * @return O empréstimo atualizado.
      * @throws EmprestimoException Exceção que pode ser lançada ao atualizar

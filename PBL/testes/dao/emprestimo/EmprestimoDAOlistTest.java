@@ -52,20 +52,59 @@ class EmprestimoDAOlistTest {
         DAO.getLivroDAO().deleteMany();
     }
 
+    @Test
+    void criarEmprestimo() throws EmprestimoException{
+        Usuario userTeste = new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777, 3, "Nloqueado");
+        Livro livrotest = new Livro("Livro Novo", "Editora Nova", 4, "setor a", "andre", "Dec 1, 2023", "educacao", 4);
+
+        Emprestimo esperado = DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livrotest, userTeste));
+
+        assertNotNull(esperado);
+        assertEquals(3, esperado.getId());
+    }
+    
+    @Test
+    void criarEmprestimoUsuarioBloqueado() throws EmprestimoException{
+        try {
+            Usuario userTeste = new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777, 3, "Nloqueado");
+            Livro livrotest = new Livro("Livro Novo", "Editora Nova", 4, "setor a", "andre", "Dec 1, 2023", "educacao", 4);
+            DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livrotest, userTeste));
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.CREATE_1, e.getMessage());
+        }
+    }
 
     @Test
-    void create() {
-        Usuario userTeste = new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777, 3, "Liberado");
-        Livro livroTeste = new Livro("Livro Novo", "Editora Nova", 4, "setor a", "andre", "Dec 1, 2023", "educacao", 4);
+    void criarEmprestimoLivroJaEmprestado() throws EmprestimoException{
+        try{
+            Usuario userTeste = DAO.getUsuarioDAO().create(new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777));
+            Livro livroTeste = DAO.getLivroDAO().create(new Livro("Livro Novo", "Editora Nova", 4, "setor a", "andre", "Dec 1, 2023", "educacao"));
 
-        Emprestimo esperado = new Emprestimo(livroTeste, userTeste);
+            Emprestimo esperado = new Emprestimo(livroTeste, userTeste,3);
+            esperado.getLivro().setStatusLivro("Emprestado");
+            esperado.setStatus("Em aberto");
 
-        Emprestimo atual = DAO.getEmprestimoDAO().create(new Emprestimo(livroTeste, userTeste));
+            Emprestimo atual = DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livroTeste, userTeste));
 
-        assertEquals(esperado, atual);
+            assertEquals(esperado, atual);
 
-        assertNotNull(atual);
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.CREATE_2, e.getMessage());
 
+        }
+    }
+
+    @Test
+    void criarEmprestimoUsuarioNaoEPrimeiroNasReservas() throws EmprestimoException{
+        try {
+            Usuario userTeste = DAO.getUsuarioDAO().create(new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777));
+            livro3.addReserva(U2);
+            emprestimo3.setStatus("Fechado");
+            emprestimo3.getLivro().setStatusLivro("Disponivel");
+            DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livro3, userTeste));
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.CREATE_3, e.getMessage());
+        }
     }
 
     @Test
@@ -158,10 +197,23 @@ class EmprestimoDAOlistTest {
         assertEquals(esperado, DAO.getEmprestimoDAO().emprestimosAtrasados().size());
     }
 
+    @Test
+    void failemprestimosatrasados() throws EmprestimoException {
+        int esperado = 2;
+        try {
+            assertNotNull(DAO.getEmprestimoDAO().emprestimosAtrasados());
+            assertEquals(esperado, DAO.getEmprestimoDAO().emprestimosAtrasados().size());
+        }catch (EmprestimoException e) {
+            assertEquals(EmprestimoException.ATRASO, e.getMessage());
+        }
+    }
+
 
     @Test
     void historicoEmprestimosUsuario() throws EmprestimoException{
         assertNotNull( DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0));
+
+        assertEquals(2, DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0).size());
     }
 
     @Test
@@ -185,9 +237,6 @@ class EmprestimoDAOlistTest {
             assertEquals(EmprestimoException.BUSCA_ID, e.getMessage());
         }
     }
-
-
-
 
     @Test
     void calcularMulta() throws EmprestimoException{
@@ -233,7 +282,7 @@ class EmprestimoDAOlistTest {
         emprestimo1.setStatus("Em aberto");
         emprestimo1.getLivro().getReservas().clear(); // Reservas vazias
         emprestimo1.getUsuario().setlimRenovacao(1); // Limite de renovação disponível
-        //
+
         emprestimo1.setDataDevolucao(emprestimo1.getDataEmprestimo().minusDays(1));
 
         try {

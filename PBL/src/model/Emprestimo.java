@@ -30,7 +30,7 @@ public class Emprestimo {
     }
 
     /**
-     * Cria um novo registro de empréstimo com o livro, usuário e ID especificados.
+     * Cria um registro de empréstimo com o livro, usuário e ID especificados.
      * A data de empréstimo é determinada como a data atual e a data de devolução é determinada como 7 dias após a data de empréstimo.
      * @param livro O livro que está sendo emprestado.
      * @param usuario O usuário que está fazendo o empréstimo.
