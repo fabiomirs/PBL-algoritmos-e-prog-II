@@ -62,7 +62,7 @@ class EmprestimoDAOlistTest {
         assertNotNull(esperado);
         assertEquals(3, esperado.getId());
     }
-    
+
     @Test
     void criarEmprestimoUsuarioBloqueado() throws EmprestimoException{
         try {
@@ -104,6 +104,16 @@ class EmprestimoDAOlistTest {
             DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livro3, userTeste));
         }catch (EmprestimoException e){
             assertEquals(EmprestimoException.CREATE_3, e.getMessage());
+        }
+    }
+
+    @Test
+    void criarEmprestimoLimiteAtingido() throws EmprestimoException{
+        try{
+            Livro livroTeste = DAO.getLivroDAO().create(new Livro("Livro Novo", "Editora Nova", 4, "setor a", "andre", "Dec 1, 2023", "educacao"));
+            DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livroTeste, U1));
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.LIMITE_EMPRESTIMOS, e.getMessage());
         }
     }
 
@@ -214,6 +224,15 @@ class EmprestimoDAOlistTest {
         assertNotNull( DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0));
 
         assertEquals(2, DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0).size());
+    }
+
+    @Test
+    void failHistoricoUsuario() throws EmprestimoException{
+        try{
+            DAO.getEmprestimoDAO().historicoEmprestimosUsuario(51);
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.HISTORICO, e.getMessage());
+        }
     }
 
     @Test
@@ -334,6 +353,16 @@ class EmprestimoDAOlistTest {
             DAO.getEmprestimoDAO().registrarDevolucao(emprestimo1);
         } catch (EmprestimoException e) {
             assertEquals(EmprestimoException.DEVOLUCAO_2, e.getMessage());
+        }
+    }
+
+    @Test
+    void registrarDevolucaoComMulta() throws EmprestimoException{
+        try{
+            emprestimo1.setDataDevolucao(emprestimo1.getDataEmprestimo().minusDays(1));
+            DAO.getEmprestimoDAO().registrarDevolucao(emprestimo1);
+        }catch (EmprestimoException e){
+            assertEquals(EmprestimoException.MULTADO, e.getMessage());
         }
     }
 
