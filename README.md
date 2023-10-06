@@ -52,8 +52,8 @@ E abra o projeto no IntelliJ IDEA e aguarde o download das dependências.
 
 ## Executando os testes de unidade (Em breve... )
 
-Para executar os testes de unidade foi criado um repositório com os testes armazenados, sendo possível executar todos os testes a partir deste. Clicando com o botão direito do mouse em qualquer repositório já existe a opção "Run all tests".
-- [Repositório criado](PBL/testes)
+Para executar os testes de unidade foi criado um diretório com os testes armazenados, sendo possível executar todos os testes a partir deste. Clicando com o botão direito do mouse em qualquer diretório, já existe a opção "Run all tests".
+- [Diretório criado](PBL/testes)
 
 
 ## Construído com
