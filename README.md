@@ -13,7 +13,7 @@
 
 ### Diagrama de Classes
 
-![Diagrama de Classe](Diagramas/Sistema_biblioteca.jpg)
+![Diagrama de Classe](Diagramas/Sistema_biblioteca.png)
 
 ### Diagrama de casos de uso
 
@@ -33,7 +33,6 @@
 10. **Controle de operadores do sistema:** O sistema deve permitir o cadastro de novos operadores, com informações como nome, número de identificação, cargo e senha de acesso. Os cargos podem ser do tipo Administrador ou Bibliotecário. O Bibliotecário só terá acesso às funcionalidades #1, #2 e #3.
 
 ### Estrutura de diretórios para desenvolvimento
-- Model
 - [model](PBL/src/model): modelos de dados do sistema
 - [dao](PBL/src/dao): implementação do padrão DAO (Data Access Object)
 - *controller (em breve...):*
