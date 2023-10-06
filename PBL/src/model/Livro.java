@@ -8,16 +8,49 @@ import java.util.Queue;
  * A classe Livro representa um livro da biblioteca.
  */
 public class Livro {
+    /**
+     * Título correspondente ao livro.
+     */
     private String titulo;
+    /**
+     * Editora correspondente ao livro.
+     */
     private String editora;
+    /**
+     * Código ISBN correspondente ao livro.
+     */
     private Integer codigoIsbn;
+    /**
+     * Localização correspondente ao livro.
+     */
     private String localizacao;
+    /**
+     * Status que está o livro.
+     */
     private String statusLivro;
+    /**
+     * Autor correspondente ao livro.
+     */
     private String autor;
+    /**
+     * Ano em que o livro foi publicado.
+     */
     private String anoPublicacao;
+    /**
+     * Número de identificação correspondente ao livro.
+     */
     private Integer id;
+    /**
+     * Id que será associado ao próximo livro correspondente .
+     */
     private int proximoId;
+    /**
+     * Categoria correspondente ao livro.
+     */
     private String categoria;
+    /**
+     * Fila de reservas correspondente ao livro.
+     */
     private Queue<Usuario> reservas = new LinkedList<>();
 
     /**

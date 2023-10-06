@@ -13,21 +13,68 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe criada para realizar os testes relacionados ao EmprestimoDAOlist.
+ */
 class EmprestimoDAOlistTest {
+    /**
+     * Representa o primeiro livro de teste.
+     */
     Livro livro1;
+
+    /**
+     * Representa o segundo livro de teste.
+     */
     Livro livro2;
+
+    /**
+     * Representa o terceiro livro de teste.
+     */
     Livro livro3;
+
+    /**
+     * Representa o quarto livro de teste.
+     */
     Livro livro4;
+
+    /**
+     * Representa o primeiro usuário de teste.
+     */
     Usuario U1;
+
+    /**
+     * Representa o segundo usuário de teste.
+     */
     Usuario U2;
+
+    /**
+     * Representa o terceiro usuário de teste.
+     */
     Usuario U3;
+
+    /**
+     * Representa o primeiro emprestimo de teste.
+     */
     Emprestimo emprestimo1;
+
+    /**
+     * Representa o segundo emprestimo de teste.
+     */
     Emprestimo emprestimo2;
+
+    /**
+     * Representa o terceiro emprestimo de teste.
+     */
     Emprestimo emprestimo3;
+
+    /**
+     * Representa o quarto emprestimo de teste.
+     */
     Emprestimo emprestimo4;
 
-
-
+    /**
+     * Executa ANTES de cada teste
+     */
     @BeforeEach
     void setUp() throws EmprestimoException {
         livro1 = DAO.getLivroDAO().create(new Livro("x", "Penguin Random House", 1, "setor e", "joao", "Nov 16, 2022", "Romance"));
@@ -45,6 +92,9 @@ class EmprestimoDAOlistTest {
         emprestimo4 = DAO.getEmprestimoDAO().criarEmprestimo(new Emprestimo(livro4, U1));
     }
 
+    /**
+     * Executa DEPOIS de cada teste.
+     */
     @AfterEach
     void tearDown(){
         DAO.getEmprestimoDAO().deleteMany();
@@ -52,6 +102,11 @@ class EmprestimoDAOlistTest {
         DAO.getLivroDAO().deleteMany();
     }
 
+    /**
+     * Método utilizado para testar a criação de um empréstimo válido.
+     * @throws EmprestimoException Exceção que pode ser lançada, como é um teste que vai dar correto
+     * ela não é aplicada.
+     */
     @Test
     void criarEmprestimo() throws EmprestimoException{
         Usuario userTeste = new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777, 3, "Nloqueado");
@@ -63,6 +118,11 @@ class EmprestimoDAOlistTest {
         assertEquals(3, esperado.getId());
     }
 
+    /**
+     * Método usado para testar a criação de um empréstimo que
+     * tenha o status de conta bloqueado.
+     * @throws EmprestimoException Exceção para usuário bloqueado.
+     */
     @Test
     void criarEmprestimoUsuarioBloqueado() throws EmprestimoException{
         try {
@@ -74,6 +134,11 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método usado para testar a criação de um empréstimo que
+     * tenha o livro já emprestado.
+     * @throws EmprestimoException Exceção para livro já esmprestado.
+     */
     @Test
     void criarEmprestimoLivroJaEmprestado() throws EmprestimoException{
         try{
@@ -94,6 +159,12 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método usado para testar a criação de um empréstimo que
+     * o usuário não é o primeiro da fila de reservas, ou seja, não é
+     * prioridade.
+     * @throws EmprestimoException Exceção para usuário não ser o primeiro da fila.
+     */
     @Test
     void criarEmprestimoUsuarioNaoEPrimeiroNasReservas() throws EmprestimoException{
         try {
@@ -107,6 +178,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método usado para testar o caso onde o usuário já atingiu o limite inicial de empréstimos.
+     * @throws EmprestimoException Exceção que pode ser gerada para esse caso.
+     */
     @Test
     void criarEmprestimoLimiteAtingido() throws EmprestimoException{
         try{
@@ -117,12 +192,20 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método de teste usado para fazer a leitura e verificar se o tamanho da lista
+     * de empréstimos corresponde a quantidade que é criada no setup().
+     */
     @Test
     void read() {
         DAO.getEmprestimoDAO().read();
         assertEquals(4, DAO.getEmprestimoDAO().read().size());
     }
 
+    /**
+     * Método utilizado para fazer uma atualização de dado válida para o empréstimo.
+     * @throws EmprestimoException Exceção lançada caso ocorra um erro de atualização do empréstimo.
+     */
     @Test
     void update() throws EmprestimoException {
         emprestimo3.setStatus("Fechado");
@@ -130,6 +213,10 @@ class EmprestimoDAOlistTest {
         assertEquals(emprestimo3, atual);
     }
 
+    /**
+     * Método utilizado para testar um caso de atualização de dados falho.
+     * @throws EmprestimoException Exceção lançada caso ocorra um erro de atualização do empréstimo.
+     */
     @Test
     void failUpdate() throws EmprestimoException {
         try {
@@ -143,6 +230,11 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método de teste para realizar a exclusão de um emprestimo e garantir a veracidade
+     * comparando a quantidade de elementos que existiam antes e depois da exclusão ser feita.
+     * @throws EmprestimoException Exceção que pode ser lançada, como é um teste que vai dar certo ela não se aplica.
+     */
     @Test
     void delete() throws EmprestimoException{
         int tamanho_esperado = DAO.getEmprestimoDAO().read().size();
@@ -150,6 +242,10 @@ class EmprestimoDAOlistTest {
         assertEquals(tamanho_esperado-1, DAO.getEmprestimoDAO().read().size());
     }
 
+    /**
+     * Teste realizado tentando excluir um empréstimo inválido.
+     * @throws EmprestimoException Exceção lançada ao acontecer o erro de exclusão.
+     */
     @Test
     void failDelete() throws EmprestimoException {
         try {
@@ -158,9 +254,13 @@ class EmprestimoDAOlistTest {
         } catch (EmprestimoException e) {
             assertEquals(EmprestimoException.DELETE, e.getMessage());
         }
-
     }
 
+    /**
+     * Método utilizado para pegar os livros mais populares, verificando se o livro que esta no top 1
+     * dos mais populares deve ser aquele que foram feitos mais empréstimos.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void livrosMaisPopulares() throws EmprestimoException{
         Usuario userteste = new Usuario("FabioBli", "Ap #124-2996 A Avenue", 7777, 3, "Liberado");
@@ -170,6 +270,10 @@ class EmprestimoDAOlistTest {
         assertEquals(livro2, DAO.getEmprestimoDAO().livrosMaisPopulares().get(0));
     }
 
+    /**
+     * Método com um caso falho para livros mais populares.
+     * @throws EmprestimoException Exceção lançada caso ainda não tenham sido feitos empréstimos.
+     */
     @Test
     void faillivrosMaisPopulares() throws EmprestimoException{
         try{
@@ -180,12 +284,21 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para verificar os livros emprestados, compara-se se o tamanho da lista de livros
+     * emprestados é igual ao esperado.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void LivrosEmprestados() throws EmprestimoException {
         int esperado = 4;
         assertEquals(esperado, DAO.getEmprestimoDAO().LivrosEmprestados().size());
     }
 
+    /**
+     * Método com um caso falho para pegar a lista de livros emprestados.
+     * @throws EmprestimoException Exceção lançada caso ainda não tenham sido feitos empréstimos.
+     */
     @Test
     void failLivrosEmprestados() throws EmprestimoException{
         try{
@@ -196,7 +309,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
-
+    /**
+     * Método para testar a tentativa de pegar empréstimos que estão em atraso.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void emprestimosAtrasados() throws EmprestimoException {
         // cenário onde há empréstimos atrasados
@@ -207,6 +323,10 @@ class EmprestimoDAOlistTest {
         assertEquals(esperado, DAO.getEmprestimoDAO().emprestimosAtrasados().size());
     }
 
+    /**
+     * Método de teste falho para pegar a lista de empréstimos atrasados.
+     * @throws EmprestimoException Exceção lançada caso ainda não empréstimos com atraso.
+     */
     @Test
     void failemprestimosatrasados() throws EmprestimoException {
         int esperado = 2;
@@ -218,7 +338,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
-
+    /**
+     * Método teste para verificar o histórico de um usuário.
+     * @throws EmprestimoException Exceção que pode ser lançada caso ocorra um erro.
+     */
     @Test
     void historicoEmprestimosUsuario() throws EmprestimoException{
         assertNotNull( DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0));
@@ -226,6 +349,10 @@ class EmprestimoDAOlistTest {
         assertEquals(2, DAO.getEmprestimoDAO().historicoEmprestimosUsuario(0).size());
     }
 
+    /**
+     * Método de teste falho para pegar o histórico de um usuário.
+     * @throws EmprestimoException Exceção lançada caso o usuário não tenha empréstimos.
+     */
     @Test
     void failHistoricoUsuario() throws EmprestimoException{
         try{
@@ -235,6 +362,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para realizar a busca de empréstimo por id.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void buscarporId() throws EmprestimoException {
         Integer idExistente = 1;
@@ -244,8 +375,12 @@ class EmprestimoDAOlistTest {
         assertEquals(idExistente, resultado.getId());
     }
 
+    /**
+     * Método de teste falho para a busca por id.
+     * @throws EmprestimoException Exceção lançada caso o empréstimo com o id informado não seja encontrado.
+     */
     @Test
-    void failbuscarporId() {
+    void failbuscarporId() throws EmprestimoException{
         Integer idExistente = 99;
 
         try {
@@ -257,6 +392,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para calcular a multa de um usuário.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void calcularMulta() throws EmprestimoException{
         emprestimo1.setDataDevolucao(LocalDate.now().minusDays(2));
@@ -266,6 +405,10 @@ class EmprestimoDAOlistTest {
 
     }
 
+    /**
+     * Método com um caso falho de cálculo da multa.
+     * @throws EmprestimoException Exceção lançada caso ainda não seja necessário calcular multa para o usuário.
+     */
     @Test
     void failcalcularMullta() throws EmprestimoException{
         try{
@@ -276,6 +419,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para a renovação de um empréstimo.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void renovarEmprestimo() throws EmprestimoException{
         DAO.getEmprestimoDAO().renovarEmprestimo(emprestimo1);
@@ -283,8 +430,13 @@ class EmprestimoDAOlistTest {
         assertEquals(novaData, emprestimo1.getDataDevolucao());
     }
 
+    /**
+     * Método de teste para o usuário que tenta renovar um empréstimo, mas já
+     * atingiu o limite de renovações.
+     * @throws EmprestimoException Exceção lançada caso o usuário tenha atingido o limite.
+     */
     @Test
-    void renovarEmprestimoLimiteExcedido() {
+    void renovarEmprestimoLimiteExcedido() throws EmprestimoException{
         emprestimo1.setStatus("Em aberto");
         emprestimo1.getLivro().getReservas().clear(); // Reservas vazias
         emprestimo1.getUsuario().setlimRenovacao(0); // Limite de renovação atingido
@@ -296,8 +448,12 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para o usuário que tenta renovar um empréstimo estando multado.
+     * @throws EmprestimoException Exceção lançada caso o usuário esteja multado.
+     */
     @Test
-    void renovarEmprestimoUsuarioMultado() {
+    void renovarEmprestimoUsuarioMultado() throws EmprestimoException {
         emprestimo1.setStatus("Em aberto");
         emprestimo1.getLivro().getReservas().clear(); // Reservas vazias
         emprestimo1.getUsuario().setlimRenovacao(1); // Limite de renovação disponível
@@ -311,9 +467,13 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método de teste para o usuário que tenta renovar um empréstimo que já foi encerrado.
+     * @throws EmprestimoException Exceção lançada caso o empréstimo já tenha sido encerrado.
+     */
     @Test
-    void renovarEmprestimoEmAberto() {
-        emprestimo1.setStatus("Em aberto");
+    void renovarEmprestimoEmAberto() throws EmprestimoException{
+        emprestimo1.setStatus("Fechado");
 
         try {
             DAO.getEmprestimoDAO().renovarEmprestimo(emprestimo1);
@@ -322,8 +482,13 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método de teste para o caso que o usuário tenta renovar um empréstimo, mas já existem
+     * reservas feitas para o livro.
+     * @throws EmprestimoException Exceção lançada em caso de já existirem reservas.
+     */
     @Test
-    void renovarEmprestimoComReservas() {
+    void renovarEmprestimoComReservas() throws EmprestimoException {
         emprestimo1.setStatus("Em aberto");
         emprestimo1.getLivro().getReservas().add(U3);
 
@@ -334,8 +499,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
-
-
+    /**
+     * Método com um teste válido de registro de devolução de um livro.
+     * @throws EmprestimoException Exceção que pode ser lançada em caso de erro.
+     */
     @Test
     void registrarDevolucao() throws EmprestimoException{
         DAO.getEmprestimoDAO().registrarDevolucao(emprestimo1);
@@ -344,10 +511,13 @@ class EmprestimoDAOlistTest {
         assertEquals(2, DAO.getEmprestimoDAO().LivrosEmprestados().size());
     }
 
-
+    /**
+     * Método de teste para o caso onde o livro já foi devolvido.
+     * @throws EmprestimoException Exceção lançada caso o empréstimo já tenha sido encerrado.
+     */
     @Test
-    void registrarDevolucaoEmAberto() {
-        emprestimo1.setStatus("Em aberto");
+    void registrarDevolucaoEmAberto() throws EmprestimoException{
+        emprestimo1.setStatus("Fechado");
 
         try {
             DAO.getEmprestimoDAO().registrarDevolucao(emprestimo1);
@@ -356,6 +526,10 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para o caso onde o usuário devolve um livro e está com uma multa.
+     * @throws EmprestimoException Empréstimo caso o empréstimo esteja atrasado, multado.
+     */
     @Test
     void registrarDevolucaoComMulta() throws EmprestimoException{
         try{
@@ -366,8 +540,12 @@ class EmprestimoDAOlistTest {
         }
     }
 
+    /**
+     * Método teste para o caso onde o empréstimo não existe e é feita a tentativa de devolução.
+     * @throws EmprestimoException Exceção lançada caso o empréstimo não exista.
+     */
     @Test
-    void registrarDevolucaoNulo() {
+    void registrarDevolucaoNulo() throws EmprestimoException{
         try {
             DAO.getEmprestimoDAO().registrarDevolucao(null);
         } catch (EmprestimoException e) {

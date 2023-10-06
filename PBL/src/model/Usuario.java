@@ -7,9 +7,21 @@ import java.util.Objects;
  * É uma subclasse da classe Pessoa.
  */
 public class Usuario extends Pessoa {
+    /**
+     * Enderço correspondente ao Usuário.
+     */
     private String endereco;
+    /**
+     * Telefone correspondente ao usuário.
+     */
     private Integer telefone;
+    /**
+     * Status que se encontra o usuário. (Bloqueado ou Liberado).
+     */
     private String statusConta;
+    /**
+     * Limite de renovações do usuário.
+     */
     private Integer limRenovacao;
 
     /**

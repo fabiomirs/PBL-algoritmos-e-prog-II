@@ -6,7 +6,13 @@ import java.util.Objects;
  * A classe Pessoa representa de forma geral um indivíduo com nome e número de identificação.
  */
 public class Pessoa {
+    /**
+     * Nome correspondente a pessoa.
+     */
     private String nome;
+    /**
+     * Número de identificação correspondente a pessoa.
+     */
     private int numIdentificacao;
 
     /**

@@ -11,10 +11,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe criada para realizar os testes relacionados ao AdmDAOlist.
+ */
 class AdmDAOlistTest {
 
+    /**
+     * Representa o primeiro administrador de teste.
+     */
     Administrador Admteste;
+    /**
+     * Representa o segundo administrador de teste.
+     */
     Administrador Admteste2;
+    /**
+     * Representa o terceiro administrador de teste.
+     */
     Administrador Admteste3;
 
     /**
@@ -35,6 +47,9 @@ class AdmDAOlistTest {
         DAO.getAdmDAO().deleteMany();
     }
 
+    /**
+     * Realizando o teste para criação de um administrador, para isso compara-se um objeto já existente com o que será criado.
+     */
     @Test
     void create() {
         Administrador esperado = new Administrador("FabioAdm", "administrador", 7777, 3);
@@ -43,6 +58,11 @@ class AdmDAOlistTest {
         assertEquals(esperado, atual);
     }
 
+    /**
+     * Verificando um caso de atualização de dado válido para o administrador.
+     * Compara como o objeto deve estar com o objeto depois de passar pelas atualizações.
+     * @throws AdmException Exceção que pode ser lançada, como é um teste que vai dar certo ela não se aplica.
+     */
     @Test
     void update() throws AdmException{
         Admteste.setNome("joao");
@@ -63,6 +83,10 @@ class AdmDAOlistTest {
         assertEquals(Admteste3, atual_3);
     }
 
+    /**
+     * Teste para realizar uma atualização de dado inválida e gerar um caso de erro.
+     * @throws AdmException Exceção lançada ao acontecer o erro de atualização.
+     */
     @Test
     void failUpdate() throws AdmException {
         try {
@@ -75,6 +99,11 @@ class AdmDAOlistTest {
         }
     }
 
+    /**
+     * Método de teste para realizar a exclusão de um administrador e garantir a veracidade
+     * comparando a quantidade de elementos que existiam antes e depois da exclusão ser feita.
+     * @throws AdmException Exceção que pode ser lançada, como é um teste que vai dar certo ela não se aplica.
+     */
     @Test
     void delete() throws AdmException {
         int tamanho_esperado = DAO.getAdmDAO().read().size();
@@ -82,8 +111,12 @@ class AdmDAOlistTest {
         assertEquals(tamanho_esperado-1, DAO.getAdmDAO().read().size());
     }
 
+    /**
+     * Teste realizado tentando excluir um administrador inválido.
+     * @throws AdmException Exceção lançada ao acontecer o erro de exclusão.
+     */
     @Test
-    void failDelete(){
+    void failDelete() throws AdmException{
         try {
             DAO.getAdmDAO().delete(new Administrador("Fábio", "administrador", 00000));
             fail("Uma exceção deveria ser gerada!!");
@@ -93,18 +126,30 @@ class AdmDAOlistTest {
 
     }
 
+    /**
+     * Método de teste usado para fazer a leitura e verificar se o tamanho da lista
+     * de administradores corresponde a quantidade que é criada no setup().
+     */
     @Test
     void read() {
         DAO.getAdmDAO().read();
         assertEquals(3, DAO.getAdmDAO().read().size());
     }
 
+    /**
+     * Teste para verificar se ao excluir todos os dados salvos o tamanho da lista de
+     * administradores fica zerada.
+     */
     @Test
     void deleteMany() {
         DAO.getAdmDAO().deleteMany();
         assertEquals(0, DAO.getAdmDAO().read().size());
     }
 
+    /**
+     * Método usado para realizar uma busca válida de um administrador por id.
+     * @throws Exception Exceção lançada caso ocorra algum erro na busca.
+     */
     @Test
     void buscarporId() throws Exception {
         Administrador esperado = new Administrador("Admteste", "administrador", 22222, 0);
@@ -117,6 +162,10 @@ class AdmDAOlistTest {
 
     }
 
+    /**
+     * Método com um teste falho para a busca por id.
+     * @throws AdmException Exceção lançada ao não encontrar nenhum administrador com o id buscado.
+     */
     @Test
     void failbuscarporId() throws AdmException{
         try{

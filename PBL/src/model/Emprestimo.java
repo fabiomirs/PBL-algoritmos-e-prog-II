@@ -7,11 +7,29 @@ import java.util.Objects;
  * A classe Emprestimo representa um empréstimo de um livro para um usuário no sistema de biblioteca.
  */
 public class Emprestimo {
+    /**
+     * Objeto do livro.
+     */
     private Livro livro;
+    /**
+     * Objeto do usuário.
+     */
     private Usuario usuario;
+    /**
+     * Data correspondente ao dia que o empréstimo foi feito.
+     */
     private LocalDate dataEmprestimo;
+    /**
+     * Data da devolução do empréstimo.
+     */
     private LocalDate dataDevolucao;
+    /**
+     * Número de identificação para o empréstimo.
+     */
     private Integer id;
+    /**
+     * Status atual que se encontra o empréstimo.(Fechado ou Em aberto).
+     */
     private String status;
 
     /**

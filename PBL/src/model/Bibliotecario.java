@@ -7,7 +7,13 @@ import java.util.Objects;
  * É uma subclasse da classe Pessoa.
  */
 public class Bibliotecario extends Pessoa {
+    /**
+     * cargo correspondente ao objeto criado.
+     */
     private String cargo;
+    /**
+     * Senha de acesso criada.
+     */
     private Integer senhaAcesso;
 
     /**
