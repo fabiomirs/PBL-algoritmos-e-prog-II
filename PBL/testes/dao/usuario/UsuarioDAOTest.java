@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe criada para realizar os testes relacionados ao UsuarioDAOlist.
  */
-class UsuarioDAOlistTest {
+class UsuarioDAOTest {
     /**
      * Representa o primeiro usuário de teste.
      */
@@ -31,6 +31,7 @@ class UsuarioDAOlistTest {
      */
     @BeforeEach
     void setUp() {
+        DAO.getUsuarioDAO().alteraParaPastaTeste();
         U1 = DAO.getUsuarioDAO().create(new Usuario("Hedley Griffin", "P.O. Box 571, 8659 Mauris, Rd.", 31495527));
         U2 = DAO.getUsuarioDAO().create(new Usuario("Gail Berry", "3489 Accumsan St.", 72664858));
         U3 = DAO.getUsuarioDAO().create(new Usuario("Gisela Dean", "Ap #124-2996 A Avenue", 53398795));
@@ -42,6 +43,7 @@ class UsuarioDAOlistTest {
     @AfterEach
     void tearDown() {
         DAO.getUsuarioDAO().deleteMany();
+        DAO.getUsuarioDAO().alteraParaPastaPrincipal();
     }
 
     /**
