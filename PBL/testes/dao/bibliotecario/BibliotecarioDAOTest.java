@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe criada para realizar os testes relacionados ao BibliotecarioDAOlist.
  */
-class BibliotecarioDAOlistTest {
+class BibliotecarioDAOTest {
 
     /**
      * Representa o primeiro bibliotecário de teste.
@@ -35,6 +35,7 @@ class BibliotecarioDAOlistTest {
      */
     @BeforeEach
     void setUp() {
+        DAO.getBibliotecarioDAO().alteraParaPastaTeste();
         B1 = DAO.getBibliotecarioDAO().create(new Bibliotecario("Dawn Pittman", "Bibliotecario", 15377));
         B2 = DAO.getBibliotecarioDAO().create(new Bibliotecario("Berk Bennett", "Bibliotecario", 52964));
         B3 = DAO.getBibliotecarioDAO().create(new Bibliotecario("Upton Santiago", "Bibliotecario", 58634));
@@ -46,6 +47,7 @@ class BibliotecarioDAOlistTest {
     @AfterEach
     void tearDown() {
         DAO.getBibliotecarioDAO().deleteMany();
+        DAO.getBibliotecarioDAO().alteraParaPastaPrincipal();
     }
 
     /**
