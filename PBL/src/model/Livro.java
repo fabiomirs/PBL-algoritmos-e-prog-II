@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Queue;
@@ -7,7 +8,7 @@ import java.util.Queue;
 /**
  * A classe Livro representa um livro da biblioteca.
  */
-public class Livro {
+public class Livro implements Serializable {
     /**
      * Título correspondente ao livro.
      */
