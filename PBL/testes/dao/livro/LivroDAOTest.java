@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe criada para realizar os testes relacionados ao livroDAOlist.
  */
-class LivroDAOlistTest {
+class LivroDAOTest {
     /**
      * Representa o primeiro livro de teste.
      */
@@ -34,6 +34,7 @@ class LivroDAOlistTest {
      */
     @BeforeEach
     void setUp() {
+        DAO.getLivroDAO().alteraParaPastaTeste();
         livro1 = DAO.getLivroDAO().create(new Livro("x", "Penguin Random House", 1, "setor e", "joao", "Nov 16, 2022", "teste"));
         livro2 = DAO.getLivroDAO().create(new Livro("b", "HarperCollins", 2, "setor d", "joao", "Mar 2, 2024", "Ficção"));
         livro3 = DAO.getLivroDAO().create(new Livro("c", "Macmillan Publishers", 3, "setor c", "joao", "Nov 5, 2022", "educacao"));
@@ -45,6 +46,7 @@ class LivroDAOlistTest {
     @AfterEach
     void tearDown() {
         DAO.getLivroDAO().deleteMany();
+        DAO.getLivroDAO().alteraParaPastaPrincipal();
     }
 
     /**
