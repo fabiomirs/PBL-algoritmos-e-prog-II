@@ -77,4 +77,7 @@ public interface EmprestimoDAO extends CRUD<Emprestimo, EmprestimoException> {
      */
     public void registrarDevolucao(Emprestimo objeto) throws EmprestimoException;
 
-    }
+    void alteraParaPastaTeste();
+
+    void alteraParaPastaPrincipal();
+}
