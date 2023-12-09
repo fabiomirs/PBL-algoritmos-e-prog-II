@@ -7,4 +7,7 @@ import model.Usuario;
  * A interface UsuarioDAO define operações específicas para acesso a dados relacionados aos usuários.
  */
 public interface UsuarioDAO extends CRUD<Usuario, UsuarioException> {
+    void alteraParaPastaTeste();
+
+    void alteraParaPastaPrincipal();
 }
