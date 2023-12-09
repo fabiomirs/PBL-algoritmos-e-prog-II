@@ -1,14 +1,14 @@
 package dao;
 import dao.administrador.AdmDAO;
-import dao.administrador.AdmDAOlist;
+import dao.administrador.AdmDAOFile;
 import dao.bibliotecario.BibliotecarioDAO;
-import dao.bibliotecario.BibliotecarioDAOlist;
+import dao.bibliotecario.BibliotecarioDAOFile;
 import dao.emprestimo.EmprestimoDAO;
-import dao.emprestimo.EmprestimoDAOlist;
+import dao.emprestimo.EmprestimoDAOFile;
 import dao.livro.LivroDAO;
-import dao.livro.LivroDAOlist;
+import dao.livro.LivroDAOFile;
 import dao.usuario.UsuarioDAO;
-import dao.usuario.UsuarioDAOlist;
+import dao.usuario.UsuarioDAOFile;
 
 /**
  * A classe DAO é responsável por fornecer o acesso às implementações das interfaces DAO do sistema.
@@ -22,7 +22,7 @@ public class DAO {
      */
     public static LivroDAO getLivroDAO() {
         if (livroDAO == null) {
-            livroDAO = new LivroDAOlist();
+            livroDAO = new LivroDAOFile();
         }
         return livroDAO;
     }
@@ -35,7 +35,7 @@ public class DAO {
      */
     public static UsuarioDAO getUsuarioDAO(){
         if (usuarioDAO == null){
-            usuarioDAO = new UsuarioDAOlist();
+            usuarioDAO = new UsuarioDAOFile();
         }
         return usuarioDAO;
     }
@@ -48,7 +48,7 @@ public class DAO {
      */
     public static EmprestimoDAO getEmprestimoDAO(){
         if (emprestimoDAO == null){
-            emprestimoDAO = new EmprestimoDAOlist();
+            emprestimoDAO = new EmprestimoDAOFile();
         }
         return emprestimoDAO;
     }
@@ -61,7 +61,7 @@ public class DAO {
      */
     public static BibliotecarioDAO getBibliotecarioDAO(){
         if (bibliotecarioDAO == null){
-            bibliotecarioDAO = new BibliotecarioDAOlist();
+            bibliotecarioDAO = new BibliotecarioDAOFile();
         }
         return bibliotecarioDAO;
     }
@@ -74,7 +74,7 @@ public class DAO {
      */
     public static AdmDAO getAdmDAO(){
         if (admDAO == null){
-            admDAO = new AdmDAOlist();
+            admDAO = new AdmDAOFile();
         }
         return admDAO;
     }
