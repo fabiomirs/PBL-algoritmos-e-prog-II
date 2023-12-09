@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Classe criada para realizar os testes relacionados ao AdmDAOlist.
  */
-class AdmDAOlistTest {
+class AdmDAOTest {
 
     /**
      * Representa o primeiro administrador de teste.
@@ -34,6 +34,7 @@ class AdmDAOlistTest {
      */
     @BeforeEach
     void setUp() {
+        DAO.getAdmDAO().alteraParaPastaTeste();
         Admteste = DAO.getAdmDAO().create(new Administrador("Admteste", "administrador", 22222));
         Admteste2 = DAO.getAdmDAO().create(new Administrador("Admteste2", "administrador", 11111));
         Admteste3 = DAO.getAdmDAO().create(new Administrador("Admteste3", "administrador", 33333));
@@ -45,6 +46,7 @@ class AdmDAOlistTest {
     @AfterEach
     void tearDown() {
         DAO.getAdmDAO().deleteMany();
+        DAO.getAdmDAO().alteraParaPastaPrincipal();
     }
 
     /**
