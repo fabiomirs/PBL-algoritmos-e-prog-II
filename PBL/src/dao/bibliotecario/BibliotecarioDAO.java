@@ -7,4 +7,7 @@ import model.Bibliotecario;
  * A interface BibliotecarioDAO define operações específicas para acesso a dados relacionados aos bibliotecários.
  */
 public interface BibliotecarioDAO extends CRUD<Bibliotecario, BibliotecarioExcpetion> {
+    void alteraParaPastaTeste();
+
+    void alteraParaPastaPrincipal();
 }
