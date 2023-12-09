@@ -284,4 +284,14 @@ public class EmprestimoDAOlist implements EmprestimoDAO {
         }
         throw new EmprestimoException(EmprestimoException.DEVOLUCAO, objeto);
     }
+
+    @Override
+    public void alteraParaPastaTeste() {
+
+    }
+
+    @Override
+    public void alteraParaPastaPrincipal() {
+
+    }
 }
