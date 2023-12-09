@@ -228,5 +228,15 @@ public class LivroDAOlist implements LivroDAO {
         }
 
     }
+
+    @Override
+    public void alteraParaPastaTeste() {
+
+    }
+
+    @Override
+    public void alteraParaPastaPrincipal() {
+
+    }
 }
 
