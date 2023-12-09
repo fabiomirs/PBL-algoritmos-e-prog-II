@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A classe Pessoa representa de forma geral um indivíduo com nome e número de identificação.
  */
-public class Pessoa {
+public class Pessoa implements Serializable {
     /**
      * Nome correspondente a pessoa.
      */
