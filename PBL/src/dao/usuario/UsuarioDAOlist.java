@@ -106,4 +106,13 @@ public class UsuarioDAOlist implements UsuarioDAO {
         throw new UsuarioException(UsuarioException.BUSCA_ID, null);
     }
 
+    @Override
+    public void alteraParaPastaTeste() {
+
+    }
+
+    @Override
+    public void alteraParaPastaPrincipal() {
+
+    }
 }
