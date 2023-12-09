@@ -108,4 +108,14 @@ public class BibliotecarioDAOlist implements BibliotecarioDAO{
         }
         throw new BibliotecarioExcpetion(BibliotecarioExcpetion.BUSCA_ID, null);
     }
+
+    @Override
+    public void alteraParaPastaTeste() {
+
+    }
+
+    @Override
+    public void alteraParaPastaPrincipal() {
+
+    }
 }
