@@ -17,4 +17,7 @@ public interface LivroDAO extends CRUD<Livro, LivroException> {
     public List<Livro> livrosComReserva() throws LivroException;
 
 
+    void alteraParaPastaTeste();
+
+    void alteraParaPastaPrincipal();
 }
