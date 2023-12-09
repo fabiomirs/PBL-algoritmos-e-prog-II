@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * A classe Emprestimo representa um empréstimo de um livro para um usuário no sistema de biblioteca.
  */
-public class Emprestimo {
+public class Emprestimo implements Serializable {
     /**
      * Objeto do livro.
      */
