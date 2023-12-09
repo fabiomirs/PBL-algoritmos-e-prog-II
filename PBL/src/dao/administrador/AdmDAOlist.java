@@ -11,6 +11,7 @@ public class AdmDAOlist implements AdmDAO {
     private List<Administrador> adms;
     private int proximoID;
 
+
     /**
      * Método usado para criar a lista de administradores e
      * inicializar o id em 0.
@@ -103,5 +104,15 @@ public class AdmDAOlist implements AdmDAO {
             }
         }
         throw new AdmException(AdmException.BUSCA_ID, null);
+    }
+
+    @Override
+    public void alteraParaPastaTeste() {
+
+    }
+
+    @Override
+    public void alteraParaPastaPrincipal() {
+
     }
 }
