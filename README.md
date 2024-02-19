@@ -35,8 +35,8 @@
 ### Estrutura de diretórios para desenvolvimento
 - [model](PBL/src/model): modelos de dados do sistema
 - [dao](PBL/src/dao): implementação do padrão DAO (Data Access Object)
-- *controller (em breve...):*
-- *view (em breve...):*
+- [controller] (src/main/java/com/example/pbl/controller): Implementação dos controladores para a manipulação das telas.
+- [view] (src/main/resources): Telas criadas para o sistema.
 ## Desenvolvimento
 
 ### Instalação
@@ -49,10 +49,10 @@ git clone https://github.com/fabiomirs/PBL-algoritmos-e-prog-II
 
 E abra o projeto no IntelliJ IDEA e aguarde o download das dependências.
 
-## Executando os testes de unidade (Em breve... )
+## Executando os testes de unidade
 
 Para executar os testes de unidade foi criado um diretório com os testes armazenados, sendo possível executar todos os testes a partir deste. Clicando com o botão direito do mouse em qualquer diretório, já existe a opção "Run all tests".
-- [Diretório criado](PBL/testes)
+- [Diretório criado](src/testes)
 
 
 ## Construído com
