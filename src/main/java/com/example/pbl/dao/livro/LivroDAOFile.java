@@ -108,7 +108,7 @@ public class LivroDAOFile implements LivroDAO {
      */
     public Livro buscarporId(Integer id) throws LivroException {
         for (Livro Livro : this.Livros) {
-            if (Livro.getId() == id) {
+            if (Livro.getId().equals(id)) {
                 return Livro;
             }
         }
@@ -125,7 +125,7 @@ public class LivroDAOFile implements LivroDAO {
     public List<Livro> buscarporTitulo(String titulo) throws LivroException {
         List<Livro> listLivro = new ArrayList<Livro>();
         for (Livro livro : this.Livros) {
-            if (livro.getTitulo() == titulo) {
+            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
                 listLivro.add(livro);
             }
         }
@@ -146,7 +146,7 @@ public class LivroDAOFile implements LivroDAO {
     public List<Livro> buscarporAutor(String autor) throws LivroException {
         List<Livro> listLivro = new ArrayList<Livro>();
         for (Livro livro : this.Livros) {
-            if (livro.getAutor() == autor) {
+            if (livro.getAutor().equalsIgnoreCase( autor)) {
                 listLivro.add(livro);
             }
         }

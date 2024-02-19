@@ -33,7 +33,7 @@ public class EmprestimoDAOFile implements EmprestimoDAO{
 
         // Verifica se o usuário possui multa em algum empréstimo em aberto
         for (Emprestimo emprestimoUsuario : emprestimos) {
-            if (emprestimoUsuario.getUsuario().getNumIdentificacao() == objeto.getUsuario().getNumIdentificacao() && "Em aberto".equals(emprestimoUsuario.getStatus())) {
+            if (Objects.equals(emprestimoUsuario.getUsuario().getNumIdentificacao(), objeto.getUsuario().getNumIdentificacao()) && "Em aberto".equals(emprestimoUsuario.getStatus())) {
                 Integer multaUsuario = calcularMulta(emprestimoUsuario);
                 if (multaUsuario > 0) {
                     throw new EmprestimoException(EmprestimoException.MULTADO, null);
@@ -50,7 +50,7 @@ public class EmprestimoDAOFile implements EmprestimoDAO{
         // Verifica se o usuário já atingiu o limite de 2 empréstimos
         int numEmprestimosAtivos = 0;
         for (Emprestimo emprestimoUsuario : emprestimos) {
-            if (emprestimoUsuario.getUsuario().getNumIdentificacao() == objeto.getUsuario().getNumIdentificacao() && "Em aberto".equals(emprestimoUsuario.getStatus())) {
+            if (Objects.equals(emprestimoUsuario.getUsuario().getNumIdentificacao(), objeto.getUsuario().getNumIdentificacao()) && "Em aberto".equals(emprestimoUsuario.getStatus())) {
                 numEmprestimosAtivos++;
             }
         }
@@ -161,10 +161,10 @@ public class EmprestimoDAOFile implements EmprestimoDAO{
         throw new EmprestimoException(EmprestimoException.ATRASO, null);
     }
 
-    public List<Emprestimo> historicoEmprestimosUsuario(Integer idUsuario) throws EmprestimoException{//AQUI DEU PAU NO TESTE
+    public List<Emprestimo> historicoEmprestimosUsuario(Integer idUsuario) throws EmprestimoException{
         List<Emprestimo> historico = new ArrayList<>();
         for (Emprestimo emprestimo : emprestimos) {
-            if (emprestimo.getId() == idUsuario) {
+            if (Objects.equals(emprestimo.getId(), idUsuario)) {
                 historico.add(emprestimo);
             }
         }
@@ -209,7 +209,7 @@ public class EmprestimoDAOFile implements EmprestimoDAO{
     @Override
     public Emprestimo buscarporId(Integer id) throws EmprestimoException {
         for (Emprestimo emprestimo : this.emprestimos) {
-            if (emprestimo.getUsuario().getNumIdentificacao() == (id)) {
+            if (Objects.equals(emprestimo.getUsuario().getNumIdentificacao(), id)) {
                 return emprestimo;
             }
         }

@@ -108,7 +108,7 @@ public class UsuarioDAOFile implements UsuarioDAO{
     @Override
     public Usuario buscarporId(Integer id) throws UsuarioException{
         for (Usuario Usuario : this.usuarios) {
-            if (Usuario.getNumIdentificacao() == id) {
+            if (Usuario.getNumIdentificacao().equals(id)) {
                 return Usuario;
             }
         }
