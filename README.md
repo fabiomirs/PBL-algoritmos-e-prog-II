@@ -35,8 +35,8 @@
 ### Estrutura de diretórios para desenvolvimento
 - [model](PBL/src/model): modelos de dados do sistema
 - [dao](PBL/src/dao): implementação do padrão DAO (Data Access Object)
-- [controller] (src/main/java/com/example/pbl/controller): Implementação dos controladores para a manipulação das telas.
-- [view] (src/main/resources): Telas criadas para o sistema.
+- [controller](src/main/java/com/example/pbl/controller): Implementação dos controladores para a manipulação das telas.
+- [view](src/main/resources): Telas criadas para o sistema.
 ## Desenvolvimento
 
 ### Instalação
