@@ -31,7 +31,7 @@ class UsuarioDAOTest {
      */
     @BeforeEach
     void setUp() {
-        DAO.getUsuarioDAO().alteraParaPastaTeste();
+        //DAO.getUsuarioDAO().alteraParaPastaTeste();
         U1 = DAO.getUsuarioDAO().create(new Usuario("Hedley Griffin", "P.O. Box 571, 8659 Mauris, Rd.", 31495527));
         U2 = DAO.getUsuarioDAO().create(new Usuario("Gail Berry", "3489 Accumsan St.", 72664858));
         U3 = DAO.getUsuarioDAO().create(new Usuario("Gisela Dean", "Ap #124-2996 A Avenue", 53398795));
@@ -40,11 +40,11 @@ class UsuarioDAOTest {
     /**
      * Executa DEPOIS de cada teste.
      */
-    @AfterEach
+    /*@AfterEach
     void tearDown() {
         DAO.getUsuarioDAO().deleteMany();
         DAO.getUsuarioDAO().alteraParaPastaPrincipal();
-    }
+    }*/
 
     /**
      * Realizando o teste para criação de um usuário, para isso compara-se um objeto já existente com o que será criado.
