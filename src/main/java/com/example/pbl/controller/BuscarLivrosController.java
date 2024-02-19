@@ -63,7 +63,6 @@ public class BuscarLivrosController {
     @FXML
     private TableColumn<Livro, String> colAno;
 
-
     @FXML
     private TableColumn<Livro, String> colTitulo;
 
@@ -81,6 +80,10 @@ public class BuscarLivrosController {
 
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void buscando(ActionEvent event) {
         String escolha = busca.getText();
@@ -127,12 +130,18 @@ public class BuscarLivrosController {
         }
     }
 
-
+    /***
+     *
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML
     void initialize() {
         ObservableList<String> list = FXCollections.observableArrayList("Título", "Autor", "ISBN", "Categoria");

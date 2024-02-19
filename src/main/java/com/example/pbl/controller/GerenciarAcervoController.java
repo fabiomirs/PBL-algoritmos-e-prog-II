@@ -33,27 +33,49 @@ public class GerenciarAcervoController {
     @FXML // fx:id="removeLivroButton"
     private Button removeLivroButton; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void attLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/UpdateLivroView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cadastrarLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewLivroView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void DeletarLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/RemoverLivroView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
         MainController.goBack();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert atualizaLivro != null : "fx:id=\"atualizaLivro\" was not injected: check your FXML file 'GerenciarAcervoView.fxml'.";
         assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'GerenciarAcervoView.fxml'.";

@@ -81,8 +81,15 @@ public class UsuarioController {
     @FXML
     private Label indicaMulta;
 
+    /***
+     * Variável usada para referenciar o usuário.
+     */
     private int userId;
 
+    /***
+     * Inicialização do objeto do usuário que esta usando o sistema.
+     * @param userId
+     */
     public void initData(int userId) {
         this.userId = userId;
         try {
@@ -113,27 +120,50 @@ public class UsuarioController {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void Sair(ActionEvent event) throws IOException{
         MainController.gotoScene("/LoginView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goToBuscarLivros(ActionEvent event) throws IOException {
         MainController.gotoScene("/BuscarLivrosView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goToRenovar(ActionEvent event) throws IOException {
         MainController.gotoScene("/RenovarEmprestimoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void goToReserva(ActionEvent event) throws IOException {
         MainController.gotoScene("/ReservarLivroView.fxml");
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert BuscarButton != null : "fx:id=\"BuscarButton\" was not injected: check your FXML file 'UsuarioView.fxml'.";
         assert RenovarButton != null : "fx:id=\"RenovarButton\" was not injected: check your FXML file 'UsuarioView.fxml'.";

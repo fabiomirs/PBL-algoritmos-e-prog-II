@@ -69,6 +69,10 @@ public class RemoverWorkerController {
     @FXML // fx:id="situação"
     private Label situação; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void Confirmar(ActionEvent event) {
         // Verifica se os campos de entrada estão vazios
@@ -100,6 +104,10 @@ public class RemoverWorkerController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void buscando(ActionEvent event) {
         // Verifica se os campos de entrada estão vazios
@@ -137,12 +145,19 @@ public class RemoverWorkerController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert ConfirmarButton != null : "fx:id=\"ConfirmarButton\" was not injected: check your FXML file 'RemoverWorkerView.fxml'.";
         assert IdText != null : "fx:id=\"IdText\" was not injected: check your FXML file 'RemoverWorkerView.fxml'.";

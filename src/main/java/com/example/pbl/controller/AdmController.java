@@ -78,8 +78,15 @@ public class AdmController {
     @FXML // fx:id="usernameLabel"
     private Label usernameLabel; // Value injected by FXMLLoader
 
+    /***
+     * Variável usada para referenciar o usuário.
+     */
     private int userId;
 
+    /***
+     * Inicialização do objeto do usuário que esta usando o sistema.
+     * @param userId
+     */
     public void initData(int userId) {
         this.userId = userId;
         try {
@@ -96,47 +103,90 @@ public class AdmController {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BuscarLivros(ActionEvent event) throws IOException {
         MainController.gotoScene("/BuscarLivrosView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void Devolução(ActionEvent event) throws IOException{
         MainController.gotoScene("/DevolucaoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void EmprestimodeLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewEmprestimoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void GerarRelatorios(ActionEvent event) throws IOException {
         MainController.gotoScene("/RelatoriosView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void GerenciarAcervo(ActionEvent event) throws IOException {
         MainController.gotoScene("/GerenciarAcervoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void RegistrarLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewLivroView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void controlarUsuarios(ActionEvent event) throws IOException {
         MainController.gotoScene("/ControlarUsersView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void quit(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginView.fxml");
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert BuscarButton != null : "fx:id=\"BuscarButton\" was not injected: check your FXML file 'AdmView.fxml'.";
         assert ControlarButton != null : "fx:id=\"ControlarButton\" was not injected: check your FXML file 'AdmView.fxml'.";

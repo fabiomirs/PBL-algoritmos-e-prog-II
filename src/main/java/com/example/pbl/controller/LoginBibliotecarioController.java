@@ -46,6 +46,11 @@ public class LoginBibliotecarioController {
     @FXML
     private TextField usernameField;
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void toLogin(ActionEvent event) throws IOException {
         // Limpar as mensagens de erro
@@ -123,18 +128,25 @@ public class LoginBibliotecarioController {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void tobackLogin(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginView.fxml");
     }
 
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML
     void initialize() {
         assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'LoginBibliotecarioView.fxml'.";
         assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'LoginBibliotecarioView.fxml'.";
         assert usernameField != null : "fx:id=\"usernameField\" was not injected: check your FXML file 'LoginBibliotecarioView.fxml'.";
 
-        // Adiciona ouvintes de evento para limpar a mensagem de erro quando o usuário começa a digitar nos campos
         usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
             userNoexiste.setText(""); // Limpa a mensagem de erro
         });

@@ -76,11 +76,19 @@ public class RemoverUsuarioController {
     @FXML // fx:id="button"
     private Button button; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void buscando(ActionEvent event) {
         if (idField.getText().isEmpty()){
@@ -106,6 +114,10 @@ public class RemoverUsuarioController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void Confirmar(ActionEvent event) {
         if (idField.getText().isEmpty()){
@@ -126,7 +138,10 @@ public class RemoverUsuarioController {
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert ConfirmarButton != null : "fx:id=\"ConfirmarButton\" was not injected: check your FXML file 'RemoverUsuarioView.fxml'.";
         assert IdText != null : "fx:id=\"IdText\" was not injected: check your FXML file 'RemoverUsuarioView.fxml'.";

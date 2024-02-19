@@ -49,11 +49,19 @@ public class UpdateUsuarioController {
     @FXML
     private Label situação;
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void saveClient(ActionEvent event) {
         if (idField.getText().isEmpty() || nameField.getText().isEmpty() || enderecoField.getText().isEmpty() || telefoneField.getText().isEmpty()
@@ -85,7 +93,10 @@ public class UpdateUsuarioController {
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'UpdateUsuarioView.fxml'.";
         assert idField != null : "fx:id=\"idField\" was not injected: check your FXML file 'UpdateUsuarioView.fxml'.";

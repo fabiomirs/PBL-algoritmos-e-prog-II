@@ -46,6 +46,11 @@ public class LoginAdministradorController {
     @FXML
     private TextField usernameField;
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void toLogin(ActionEvent event) throws IOException{
         // Limpar as mensagens de erro
@@ -115,11 +120,19 @@ public class LoginAdministradorController {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void tobackLogin(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginView.fxml");
     }
 
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML
     void initialize() {
         assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'LoginAdministradorView.fxml'.";

@@ -54,7 +54,6 @@ public class HistoricoUserController {
     @FXML
     private TableColumn<Livro, String> colAno;
 
-
     @FXML
     private TableColumn<Livro, String> colTitulo;
 
@@ -73,6 +72,10 @@ public class HistoricoUserController {
     @FXML // fx:id="tableView"
     private TableView<Livro> tableView; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     private void buscando(ActionEvent event) {
         String input = busca.getText();
@@ -97,11 +100,18 @@ public class HistoricoUserController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         // Configura as colunas da TableView

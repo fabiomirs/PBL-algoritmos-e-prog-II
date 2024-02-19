@@ -44,11 +44,19 @@ public class NewWorkerController {
     @FXML
     private Label situação;
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void saveOperador(ActionEvent event) {
         // Verifica se os campos de entrada estão vazios
@@ -78,8 +86,10 @@ public class NewWorkerController {
         }
     }
 
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert addressField != null : "fx:id=\"addressField\" was not injected: check your FXML file 'NewWorkerView.fxml'.";
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'NewWorkerView.fxml'.";

@@ -42,42 +42,79 @@ public class ControlarUsersController {
     @FXML // fx:id="removeOperador"
     private Button removeOperador; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void attLeitor(ActionEvent event) throws IOException {
         MainController.gotoScene("/UpdateUsuarioView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void attOperador(ActionEvent event) throws IOException {
         MainController.gotoScene("/UpdateWorkerView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cadastrarLeitor(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewUsuarioView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cadastrarOperador(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewWorkerView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void removeLeitor(ActionEvent event) throws IOException {
         MainController.gotoScene("/RemoverUsuarioView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void removeOperadorOperation(ActionEvent event) throws IOException {
         MainController.gotoScene("/RemoverWorkerView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
         MainController.goBack();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert attOperaButton != null : "fx:id=\"attOperaButton\" was not injected: check your FXML file 'ControlarUsersView.fxml'.";
         assert atualizaLeitor != null : "fx:id=\"atualizaLeitor\" was not injected: check your FXML file 'ControlarUsersView.fxml'.";

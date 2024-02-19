@@ -71,6 +71,10 @@ public class BibliotecarioController {
 
     private int userId;
 
+    /***
+     *
+     * @param userId
+     */
     public void initData(int userId) {
         this.userId = userId;
         try {
@@ -87,32 +91,60 @@ public class BibliotecarioController {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void BuscarLivros(ActionEvent event) throws IOException {
         MainController.gotoScene("/BuscarLivrosView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void Devolução(ActionEvent event) throws IOException {
         MainController.gotoScene("/DevolucaoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void EmprestimodeLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewEmprestimoView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void RegistrarLivro(ActionEvent event) throws IOException {
         MainController.gotoScene("/NewLivroView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void quit(ActionEvent event) throws IOException{
         MainController.gotoScene("/LoginView.fxml");
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert BuscarButton != null : "fx:id=\"BuscarButton\" was not injected: check your FXML file 'BibliotecarioView.fxml'.";
         assert DevolverButton != null : "fx:id=\"DevolverButton\" was not injected: check your FXML file 'BibliotecarioView.fxml'.";

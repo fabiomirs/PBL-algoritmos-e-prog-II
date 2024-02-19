@@ -49,6 +49,10 @@ public class ReservarLivroController {
     @FXML // fx:id="situação"
     private Label situação; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void ReservarLivro(ActionEvent event) {
         if (idUser.getText().isEmpty() || idlivro.getText().isEmpty()){
@@ -71,12 +75,19 @@ public class ReservarLivroController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert ReservarButton != null : "fx:id=\"ReservarButton\" was not injected: check your FXML file 'ReservarLivroView.fxml'.";
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'ReservarLivroView.fxml'.";

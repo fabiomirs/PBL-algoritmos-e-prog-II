@@ -40,6 +40,10 @@ public class RenovarEmprestimoController {
     @FXML // fx:id="situação"
     private Label situação; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void RenovarEmprestimo(ActionEvent event) {
         if (idUser.getText().isEmpty()){
@@ -60,12 +64,19 @@ public class RenovarEmprestimoController {
         }
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert RegistrarButton != null : "fx:id=\"RegistrarButton\" was not injected: check your FXML file 'RenovarEmprestimoView.fxml'.";
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'RenovarEmprestimoView.fxml'.";

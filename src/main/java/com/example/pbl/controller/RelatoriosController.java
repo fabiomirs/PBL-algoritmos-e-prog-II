@@ -60,16 +60,28 @@ public class RelatoriosController {
     @FXML
     private TableView<Livro> tabelaLivros;
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void SelecionarUser(ActionEvent event) throws IOException {
         MainController.gotoScene("/HistoricoUserView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void voltar(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML
     void initialize() {
         try {

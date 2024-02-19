@@ -52,11 +52,19 @@ public class NewUsuarioController {
     @FXML
     private Label situação;
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void cancelOperation(ActionEvent event) {
         MainController.goBack();
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void salvarUser(ActionEvent event) {
         // Verifica se os campos de entrada estão vazios
@@ -80,7 +88,10 @@ public class NewUsuarioController {
         }
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
+    @FXML
     void initialize() {
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'NewUsuarioView.fxml'.";
         assert nameField != null : "fx:id=\"nameField\" was not injected: check your FXML file 'NewUsuarioView.fxml'.";

@@ -53,11 +53,20 @@ public class NewLivroController {
     @FXML // fx:id="situação"
     private Label situação; // Value injected by FXMLLoader
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cancelOperation(ActionEvent event) throws IOException {
         MainController.goBack();
     }
 
+    /***
+     *
+     * @param event
+     */
     @FXML
     void saveLivro(ActionEvent event) {
         // Verifica se os campos de entrada estão vazios
@@ -80,8 +89,9 @@ public class NewLivroController {
         }
     }
 
-
-
+    /***
+     * O método é chamado quando a inicialização do FXMLLoader é completa.
+     */
     @FXML
     void initialize() {
         assert anoPublicacao != null : "fx:id=\"anoPublicacao\" was not injected: check your FXML file 'NewLivroView.fxml'.";

@@ -18,16 +18,31 @@ public class LoginController {
     @FXML
     private Button loginButton2;
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void toLoginadministrador(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginAdministradorView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void toLoginbibliotecario(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginBibliotecarioView.fxml");
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void toLoginleitor(ActionEvent event) throws IOException {
         MainController.gotoScene("/LoginLeitorView.fxml");
