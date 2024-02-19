@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pbl.controller.ControlarUsersController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1C3131;">
+         <children>
+            <Label layoutX="235.0" layoutY="29.0" text="CONTROLE DE USUÁRIOS DO SISTEMA" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button fx:id="cadLeitor" layoutX="60.0" layoutY="229.0" mnemonicParsing="false" onAction="#cadastrarLeitor" prefHeight="51.0" prefWidth="222.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #29b449;" text="Cadastrar leitor" textFill="#29b449">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeLeitorButton" layoutX="533.0" layoutY="229.0" mnemonicParsing="false" onAction="#removeLeitor" prefHeight="51.0" prefWidth="222.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #ff3030;" text="Remover leitor" textFill="#ff3030">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="atualizaLeitor" layoutX="299.0" layoutY="229.0" mnemonicParsing="false" onAction="#attLeitor" prefHeight="51.0" prefWidth="215.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #38c8f4;" text="Atualizar Dados" textFill="#38c8f4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="314.0" layoutY="195.0" text="OPERAÇÕES PARA OS LEITORES:" textFill="WHITE" />
+            <Button fx:id="cadastrarOpera" layoutX="60.0" layoutY="470.0" mnemonicParsing="false" onAction="#cadastrarOperador" prefHeight="51.0" prefWidth="222.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #29b449;" text="Cadastrar Operador" textFill="#29b449">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="attOperaButton" layoutX="299.0" layoutY="470.0" mnemonicParsing="false" onAction="#attOperador" prefHeight="51.0" prefWidth="215.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #38c8f4;" text="Atualizar Dados" textFill="#38c8f4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeOperador" layoutX="533.0" layoutY="470.0" mnemonicParsing="false" onAction="#removeOperadorOperation" prefHeight="51.0" prefWidth="222.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #ff3030;" text="Remover Operador" textFill="#ff3030">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="306.0" layoutY="442.0" text="OPERAÇÕES PARA OS OPERADORES: " textFill="WHITE" />
+            <ImageView fitHeight="124.0" fitWidth="190.0" layoutX="331.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/leitor.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="124.0" fitWidth="179.0" layoutX="331.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/adm.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" layoutX="623.0" layoutY="546.0" mnemonicParsing="false" onAction="#voltar" prefHeight="28.0" prefWidth="139.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: ffffff;" text="Voltar" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
