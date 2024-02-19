@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pbl.controller.LoginAdministradorController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" />
+      <ColumnConstraints halignment="CENTER" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="-Infinity" />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #D3D3D3 #D3D3D3;">
+         <children>
+            <ImageView fitHeight="573.0" fitWidth="487.0" layoutX="7.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/livroslogin.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="500.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #1C3131;" GridPane.columnIndex="1">
+         <children>
+            <TextField fx:id="usernameField" layoutX="107.0" layoutY="248.0" prefHeight="27.0" prefWidth="286.0" promptText="USUÁRIO" style="-fx-background-color: #D3D3D3; -fx-border-color: #e6e8e3; -fx-border-radius: 1cm; -fx-text-inner-color: #000000;" />
+            <Label layoutX="179.0" layoutY="146.0" text="Acessar conta" textFill="#e6e8e3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="84.0" text="ADMINISTRADOR" textFill="#e6e8e3">
+               <font>
+                  <Font name="System Bold" size="53.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginButton" layoutX="179.0" layoutY="394.0" mnemonicParsing="false" onAction="#toLogin" prefHeight="38.0" prefWidth="151.0" style="-fx-background-color: #D3D3D3;" text="ENTRAR">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="passwordField" layoutX="107.0" layoutY="314.0" prefHeight="26.0" prefWidth="286.0" promptText="SENHA" style="-fx-background-color: #D3D3D3; -fx-border-color: #D3D3D3; -fx-border-radius: 1cm; -fx-text-inner-color: #000000;" />
+            <Button fx:id="backButton" layoutX="425.0" layoutY="514.0" mnemonicParsing="false" onAction="#tobackLogin" prefHeight="45.0" prefWidth="54.0" style="-fx-background-color: #D3D3D3;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ButtonBar>
+                     <buttons>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagens/setavolatr.png" />
+                           </image>
+                        </ImageView>
+                     </buttons>
+                  </ButtonBar>
+               </graphic>
+            </Button>
+            <Label fx:id="loginerrado" layoutX="108.0" layoutY="275.0" prefHeight="30.0" prefWidth="280.0" textFill="WHITE" />
+            <Label fx:id="loginerrado2" layoutX="109.0" layoutY="347.0" prefHeight="30.0" prefWidth="280.0" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
