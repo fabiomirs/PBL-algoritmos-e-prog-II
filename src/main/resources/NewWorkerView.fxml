@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pbl.controller.NewWorkerController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1C3131;">
+         <children>
+            <AnchorPane layoutX="55.0" layoutY="113.0" opacity="0.85" prefHeight="349.0" prefWidth="690.0" style="-fx-background-color: #2F4F4F; -fx-background-radius: 9;">
+               <children>
+                  <VBox layoutX="14.0" layoutY="74.0" prefHeight="140.0" prefWidth="130.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="98.0" text="Nome" textFill="#e6e8e3">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label prefHeight="35.0" prefWidth="117.0" text="Cargo" textFill="#e6e8e3">
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="40.0" prefWidth="115.0" text="Senha" textFill="#e6e8e3">
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="52.0" prefHeight="162.0" prefWidth="438.0">
+                     <children>
+                        <TextField fx:id="nameField" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: #2F4F4F; -fx-border-color: #e6e8e3; -fx-border-radius: 0.10cm; -fx-text-inner-color: #e6e8e3;" />
+                        <TextField fx:id="cargoField" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: #2F4F4F; -fx-border-color: #e6e8e3; -fx-border-radius: 0.10cm; -fx-text-inner-color: #e6e8e3;">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="addressField" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: #2F4F4F; -fx-border-color: #e6e8e3; -fx-border-radius: 0.10cm; -fx-text-inner-color: #e6e8e3;">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <Label layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="191.0" text="Informações do operador" textFill="#e6e8e3">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="87.0" layoutY="56.0" text="Cadastrar operador" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancelButton" layoutX="459.0" layoutY="490.0" mnemonicParsing="false" onAction="#cancelOperation" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #ff3030;" text="Cancelar" textFill="#ff3030">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveButton" layoutX="163.0" layoutY="490.0" mnemonicParsing="false" onAction="#saveOperador" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1C3131; -fx-border-radius: 5cm; -fx-border-color: #29b449;" text="Salvar" textFill="#29b449">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="situação" layoutX="333.0" layoutY="42.0" prefHeight="56.0" prefWidth="431.0" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
